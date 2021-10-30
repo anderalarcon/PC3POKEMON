@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:background="@drawable/fondo_card"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/imgPokemon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ditto">
+
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:id="@+id/pokemonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            android:fontFamily="@font/pokemonsolid"
+            android:text="Ditto"
+            android:textColor="#FFDE00"
+            android:layout_gravity="center"
+            android:textSize="20dp">
+
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/pokemonHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/pokemonsolid"
+            android:text="hp: 45"
+            android:textColor="@color/white"
+            android:textSize="15dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/PokemonAttack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+
+            android:fontFamily="@font/pokemonsolid"
+            android:text="attack: 49"
+            android:textColor="#3B4CCA"
+            android:textSize="15dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/PokemonDefense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/pokemonsolid"
+
+
+            android:text="defense: 49"
+            android:textColor="#3B4CCA"
+            android:textSize="15dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/specialAttack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/pokemonsolid"
+
+
+            android:text="special attack: 65"
+            android:textColor="#FF0000"
+            android:textSize="15dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/specialDefense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/pokemonsolid"
+
+
+            android:text="special defense: 65"
+            android:textColor="#FF0000"
+            android:textSize="15dp">
+
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
