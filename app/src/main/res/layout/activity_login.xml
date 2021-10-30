@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pokemon_title">
+
+        </androidx.constraintlayout.utils.widget.ImageFilterView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pokemonsolid"
+            android:text="PokeApp"
+            android:textColor=" #FFDE00"
+            android:textSize="60dp"></TextView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:fontFamily="@font/pokemonsolid"
+            android:text="Ander:20172991"
+            android:shadowColor="@color/black"
+            android:textColor="#FF6600"
+            android:textSize="40dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pokemonsolid"
+            android:text="Roger:20172991"
+            android:textColor="#FF6600"
+            android:textSize="40dp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="vertical"
+
+        >
+
+        <Button
+            android:id="@+id/btnContinuar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#3B4CCA"
+            android:fontFamily="@font/pokemonsolid"
+            android:text="Continuar"></Button>
+
+        <Button
+            android:id="@+id/btnFavoritos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="#3B4CCA"
+            android:fontFamily="@font/pokemonsolid"
+            android:text="Favoritos"></Button>
+
+
+    </LinearLayout>
+
+</LinearLayout>
