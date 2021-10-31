@@ -1,10 +1,24 @@
 package pe.edu.ulima.pm.pokemonanderroger.model
 
+import android.os.Looper
+import android.util.Log
+import androidx.core.os.HandlerCompat
+import pe.edu.ulima.pm.pokemonanderroger.network.pokeAPI
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.random.Random
 
 class PokemonManager {
     private val mPokemones= arrayListOf<Pokemon>()
     private val imagenes = arrayListOf<String>()
+
+/*    val API_URL =
+        "https://script.google.com/macros/s/AKfycbxA2iW6e4f8IMlrIHIG_s1aRYDZDkhuKX1oKFARFFGe1du3fDM/"*/
+
+    val API_URL ="https://pokeapi.co/api/v2/"
 
     init {//Inicializamos valores iniciales
         imagenes.add("https://cdn7.kiwilimon.com/recetaimagen/3329/640x426/th5-640x426-38990.jpg.webp")
@@ -35,6 +49,42 @@ class PokemonManager {
     fun addPokemon(pokemon:Pokemon) {
         mPokemones.add(pokemon)
     }
+
+    fun getProductsRetrofit(
+        callbackOK: (List<Pokemon>) -> Unit,
+        callbackerror: (String) -> Unit
+    ) {
+        val retrofit = Retrofit.Builder().baseUrl(API_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+
+        val service = retrofit.create(pokeAPI::class.java)
+
+        service.getALLPokemons().enqueue(object : Callback<List<Pokemon>> {
+            //estos metodos se van a llamar cuando termine la comunicacion con el servidor
+          override fun onResponse(
+                call: Call<List<Pokemon>>,
+                response: Response<List<Pokemon>>
+            ) {
+
+                callbackOK(response.body()!!)
+            }
+
+            override fun onFailure(call: Call<List<Pokemon>>, t: Throwable) {
+                Log.e("ProductManager", t.message!!)
+
+                callbackerror(t.message!!)
+            }
+
+
+        })
+
+
+    }
+
+
+
+
+
 /*
     fun getReceta(id: Int): Receta? {//Tenemos que darle ID
         val recetas=getRecetas()
@@ -78,3 +128,4 @@ class PokemonManager {
 
 
 }
+

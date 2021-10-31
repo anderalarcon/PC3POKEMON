@@ -2,11 +2,14 @@ package pe.edu.ulima.pm.pokemonanderroger.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListPokemonAdapter
@@ -43,16 +46,32 @@ class ListPokemonFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rviPokemones =
-            view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
 
-        rviPokemones.adapter = ListPokemonAdapter(
+/*       val rviProducts =
+            view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
+        var ascasc = rviProducts
+        ascasc.adapter =ListPokemonAdapter(
             PokemonManager().getInstance().getPokemones(),
-            this
-        ) { pokemon: Pokemon ->
-            println("------------------------------")
-            listener?.onSelectCardPokemon(pokemon)
-        }
+            this,
+            {
+                    p:Pokemon ->
+
+                listener?.onSelectCardPokemon(p)
+            })*/
+
+
+      PokemonManager().getInstance().getProductsRetrofit({ pokemonList: List<Pokemon> ->
+            val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
+
+            rvi.adapter = ListPokemonAdapter(
+                pokemonList,
+                this
+            ) { pokemon: Pokemon ->
+                listener?.onSelectCardPokemon(pokemon)
+            }
+        }, { error ->
+            Toast.makeText(activity, "$error", Toast.LENGTH_SHORT).show()
+        })
 
 
     }
