@@ -39,8 +39,6 @@ class LoginActivity:AppCompatActivity() {
             intent.putExtra("data",bundle)
             startActivity(intent)
 
-            Toast.makeText(this,"QUE MANDE A FRAGMENT FAVORITOS",Toast.LENGTH_SHORT).show()
-
         }
     }
 }

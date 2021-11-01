@@ -3,18 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Roger/pro_movil/PC3/V0/PC3POKEMON/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
-        <entry key="..\:/Users/Roger/pro_movil/PC3/V0/PC3POKEMON/app/src/main/res/layout/card_pokemon.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Roger/pro_movil/PC3/V0/PC3POKEMON/app/src/main/res/layout/fragment_detalle_pokemon.xml" value="0.264" />
-        <entry key="..\:/Users/Roger/pro_movil/PC3/V0/PC3POKEMON/app/src/main/res/layout/fragment_favoritos_pokemon.xml" value="0.264" />
-        <entry key="..\:/Users/Roger/pro_movil/PC3/V0/PC3POKEMON/app/src/main/res/layout/fragment_list_pokemon.xml" value="0.3342245989304813" />
-        <entry key="..\:/Users/Roger/pro_movil/PC3/V0/PC3POKEMON/app/src/main/res/layout/item_favoritos_pokemon.xml" value="0.2" />
-        <entry key="..\:/Users/Roger/pro_movil/PC3/V0/PC3POKEMON/app/src/main/res/layout/main.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/APPS/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/APPS/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/PC3/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/PC3/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/PC3/app/src/main/res/layout/card_pokemon.xml" value="0.25" />
+        <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/PC3/app/src/main/res/layout/fragment_favoritos_pokemon.xml" value="0.3432971014492754" />
         <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/PC3/app/src/main/res/layout/fragment_list_pokemon.xml" value="0.33" />
         <entry key="..\:/Users/ander/Desktop/Ulima21-2/ProgramacionMovil/2DA MITAD/PC3/app/src/main/res/layout/main.xml" value="0.36666666666666664" />
       </map>

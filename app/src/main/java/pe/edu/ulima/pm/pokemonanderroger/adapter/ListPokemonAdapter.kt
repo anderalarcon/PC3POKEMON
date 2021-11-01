@@ -20,22 +20,22 @@ class ListPokemonAdapter(
     // clase que va representar 1 item visual , este necesita los elementos del item , implementamos los metodos que solicita
     class ViewHolder(view: View, val listener: (Pokemon) -> Unit, val PokemonList: List<Pokemon>) :
         RecyclerView.ViewHolder(view), View.OnClickListener {
-       /* val iviPokemonImage: ImageView*/
+        val iviPokemonImage: ImageView
         val tviPokemonName: TextView
-/*        val tviPokemonHP: TextView
+       val tviPokemonHP: TextView
         val tviattack: TextView
         val tvidefense: TextView
         val tvispecialAttack: TextView
-        val tvispecialDefense: TextView*/
+        val tvispecialDefense: TextView
 
         init {
-         /*   iviPokemonImage = view.findViewById(R.id.imgPokemon)*/
+           iviPokemonImage = view.findViewById(R.id.imgPokemon)
             tviPokemonName = view.findViewById(R.id.pokemonName)
-           /* tviPokemonHP = view.findViewById(R.id.pokemonHp)
+            tviPokemonHP = view.findViewById(R.id.pokemonHp)
             tviattack = view.findViewById(R.id.PokemonAttack)
             tvidefense = view.findViewById(R.id.PokemonDefense)
             tvispecialAttack = view.findViewById(R.id.specialAttack)
-            tvispecialDefense = view.findViewById(R.id.specialDefense)*/
+            tvispecialDefense = view.findViewById(R.id.specialDefense)
             view.setOnClickListener(this)
         }
 
@@ -54,16 +54,16 @@ class ListPokemonAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
         holder.tviPokemonName.text = ListPokemones[position].name
-     /*   holder.tviPokemonHP.text = ListPokemones[position].hp
+       holder.tviPokemonHP.text = ListPokemones[position].hp
         holder.tviattack.text = ListPokemones[position].attack
         holder.tvidefense.text = ListPokemones[position].defense
         holder.tvispecialAttack.text = ListPokemones[position].specialAttack
-        holder.tvispecialDefense.text = ListPokemones[position].specialDefense*/
-/*
+        holder.tvispecialDefense.text = ListPokemones[position].specialDefense
+
         Glide.with(fragment).load(ListPokemones[position].imagen)
              .sizeMultiplier(0.2f)
             .fitCenter()
-            .into(holder.iviPokemonImage)*/
+            .into(holder.iviPokemonImage)
     }
 
     override fun getItemCount(): Int {//CUANTOS SON

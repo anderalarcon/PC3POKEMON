@@ -47,7 +47,7 @@ class ListPokemonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-/*       val rviProducts =
+       val rviProducts =
             view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
         var ascasc = rviProducts
         ascasc.adapter =ListPokemonAdapter(
@@ -57,9 +57,9 @@ class ListPokemonFragment : Fragment() {
                     p:Pokemon ->
 
                 listener?.onSelectCardPokemon(p)
-            })*/
+            })
 
-
+/*
       PokemonManager().getInstance().getProductsRetrofit({ pokemonList: List<Pokemon> ->
             val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
 
@@ -71,7 +71,7 @@ class ListPokemonFragment : Fragment() {
             }
         }, { error ->
             Toast.makeText(activity, "$error", Toast.LENGTH_SHORT).show()
-        })
+        })*/
 
 
     }

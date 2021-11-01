@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             fragments.add(FavoritosPokemonFragment())
         }
 
-        if (pantallaFragment == 1){
+      if (pantallaFragment == 1){
             pokemonManager = PokemonManager().getInstance()
             val ft = supportFragmentManager.beginTransaction()
             ft.add(R.id.main_layout, fragments[0])
@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             changeFavoritosPokemonFragment()
         }
 
-/*
       var pokemon1: Pokemon = Pokemon(
             "Ditto",
             "hp: 45",
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             "especial defense: 100",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"
         )
-        pokemonManager?.addPokemon(pokemon1)*/
+        pokemonManager?.addPokemon(pokemon1)
 
     }
 

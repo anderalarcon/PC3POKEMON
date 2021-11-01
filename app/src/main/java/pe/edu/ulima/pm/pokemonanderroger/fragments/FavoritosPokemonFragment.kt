@@ -23,14 +23,48 @@ class FavoritosPokemonFragment: Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_favoritos_pokemon,container,false)
     }
-
+/*
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val rvi = view.findViewById<RecyclerView>(R.id.ReciclerFavsPokemon)
 
-        /*rvi.adapter = ListFavoritosPokemonAdapter(
+        *//*rvi.adapter = ListFavoritosPokemonAdapter(
 
-        )*/
+        )*//*
+
+    }*/
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val rvi = view.findViewById<RecyclerView>(R.id.ReciclerFavsPokemon)
+
+        rvi.adapter =ListFavoritosPokemonAdapter(
+            PokemonManager().getInstance().getPokemones(),
+            this,
+            {
+                    p:Pokemon ->
+
+
+            })
+
+/*
+      PokemonManager().getInstance().getProductsRetrofit({ pokemonList: List<Pokemon> ->
+            val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
+
+            rvi.adapter = ListPokemonAdapter(
+                pokemonList,
+                this
+            ) { pokemon: Pokemon ->
+                listener?.onSelectCardPokemon(pokemon)
+            }
+        }, { error ->
+            Toast.makeText(activity, "$error", Toast.LENGTH_SHORT).show()
+        })*/
+
 
     }
 }
