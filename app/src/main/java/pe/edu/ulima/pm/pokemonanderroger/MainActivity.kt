@@ -39,12 +39,12 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             changeFavoritosPokemonFragment()
         }
 
-    var pokemon1: Pokemon = Pokemon(
+/*    var pokemon1: Pokemon = Pokemon(
             "1",
             "hp: 45",
 
         )
-        pokemonManager?.addPokemon(pokemon1)
+        pokemonManager?.addPokemon(pokemon1)*/
 
     }
 

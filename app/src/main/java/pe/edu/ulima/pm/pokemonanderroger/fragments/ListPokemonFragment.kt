@@ -46,11 +46,10 @@ class ListPokemonFragment : Fragment() {
 
       PokemonManager().getInstance().getPokemonsRetrofit({ response:PokeApiResponse ->
             val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
-
           for(i in response.results){
-
               PokemonManager().getInstance().getPokemonsRetrofit2(i.url.split("/")[6].toInt())
           }
+
       /*
             rvi.adapter = ListPokemonAdapter(
                response.results,
