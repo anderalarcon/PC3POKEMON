@@ -39,16 +39,12 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             changeFavoritosPokemonFragment()
         }
 
-/*      var pokemon1: Pokemon = Pokemon(
-            "Ditto",
+    var pokemon1: Pokemon = Pokemon(
+            "1",
             "hp: 45",
-            "attack: 45",
-            "defense: 100",
-            "especial attack: 100",
-            "especial defense: 100",
-            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"
+
         )
-        pokemonManager?.addPokemon(pokemon1)*/
+        pokemonManager?.addPokemon(pokemon1)
 
     }
 

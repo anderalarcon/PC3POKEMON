@@ -43,7 +43,7 @@ class ListPokemonAdapter(
         }
 
         override fun onClick(v: View?) {
-            /*listener(PokemonList[adapterPosition])*///En que posicion se ha registrado el view holder
+            listener(PokemonList[adapterPosition])///En que posicion se ha registrado el view holder
         }
     }
 

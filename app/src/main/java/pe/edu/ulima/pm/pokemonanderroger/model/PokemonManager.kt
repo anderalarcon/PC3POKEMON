@@ -29,6 +29,10 @@ class PokemonManager {
         return mPokemones
     }
 
+    fun addPokemon(pok: Pokemon) {
+        mPokemones.add(pok)
+    }
+
 
     fun getPokemonsRetrofit(
         callbackOK: (PokeApiResponse) -> Unit,
@@ -40,21 +44,46 @@ class PokemonManager {
         val service = retrofit.create(pokeAPI::class.java)
 
         service.getALLPokemons().enqueue(object : Callback<PokeApiResponse> {
-            override fun onResponse(call: Call<PokeApiResponse>, response: Response<PokeApiResponse>) {
+            override fun onResponse(
+                call: Call<PokeApiResponse>,
+                response: Response<PokeApiResponse>
+            ) {
                 if (response.isSuccessful()) {
                     callbackOK(response.body()!!)
+                    println(response.body())
                 }
             }
 
             override fun onFailure(call: Call<PokeApiResponse>, t: Throwable) {
-                callbackerror(t.message!!)
+                println("error")
             }
+
         })
 
     }
 
+    fun getPokemonsRetrofit2(id:Int) {
+        val retrofit = Retrofit.Builder().baseUrl("https://pokeapi.co/api/v2/pokemon/")
+            .addConverterFactory(GsonConverterFactory.create()).build()
+
+        val service = retrofit.create(pokeAPI::class.java)
+
+        service.getPokemonInfo(id).enqueue(object : Callback<Pokemon> {
+            override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
+                if (response.isSuccessful()) {
+                    println(response.body())
+                }
+
+            }
+
+            override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                println("err")
+            }
 
 
+        })
+
+    }
 
 
 }

@@ -44,18 +44,25 @@ class ListPokemonFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        //El ListPokemonAdapter necesita un array de pokemones por ello le mandamos el arreglo del Pokedex que contiene una serie de pokemons
-      PokemonManager().getInstance().getPokemonsRetrofit({ pokemonList: PokeApiResponse ->
+      PokemonManager().getInstance().getPokemonsRetrofit({ response:PokeApiResponse ->
             val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
+
+          for(i in response.results){
+
+              PokemonManager().getInstance().getPokemonsRetrofit2(i.url.split("/")[6].toInt())
+          }
+      /*
             rvi.adapter = ListPokemonAdapter(
-                pokemonList.results,
+               response.results,
                 this
             ) { pokemon: Pokemon ->
                 listener?.onSelectCardPokemon(pokemon)
-            }
+            }*/
         }, { error ->
             Toast.makeText(activity, "$error", Toast.LENGTH_SHORT).show()
         })
+
+
 
 
 
