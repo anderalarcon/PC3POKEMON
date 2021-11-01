@@ -2,17 +2,15 @@ package pe.edu.ulima.pm.pokemonanderroger.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListPokemonAdapter
+import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
@@ -46,32 +44,21 @@ class ListPokemonFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-
-       val rviProducts =
-            view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
-        var ascasc = rviProducts
-        ascasc.adapter =ListPokemonAdapter(
-            PokemonManager().getInstance().getPokemones(),
-            this,
-            {
-                    p:Pokemon ->
-
-                listener?.onSelectCardPokemon(p)
-            })
-
-/*
-      PokemonManager().getInstance().getProductsRetrofit({ pokemonList: List<Pokemon> ->
+        //El ListPokemonAdapter necesita un array de pokemones por ello le mandamos el arreglo del Pokedex que contiene una serie de pokemons
+      PokemonManager().getInstance().getPokemonsRetrofit({ pokemonList: PokeApiResponse ->
             val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
-
             rvi.adapter = ListPokemonAdapter(
-                pokemonList,
+                pokemonList.results,
                 this
             ) { pokemon: Pokemon ->
                 listener?.onSelectCardPokemon(pokemon)
             }
         }, { error ->
             Toast.makeText(activity, "$error", Toast.LENGTH_SHORT).show()
-        })*/
+        })
+
+
+
 
 
     }

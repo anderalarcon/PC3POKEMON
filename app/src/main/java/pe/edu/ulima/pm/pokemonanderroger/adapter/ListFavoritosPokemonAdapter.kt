@@ -39,7 +39,7 @@ class ListFavoritosPokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tviPokemonNameFavs.text = ListPokemonesFavs[position].name
+     /*   holder.tviPokemonNameFavs.text = ListPokemonesFavs[position].count*/
     }
 
     override fun getItemCount(): Int {

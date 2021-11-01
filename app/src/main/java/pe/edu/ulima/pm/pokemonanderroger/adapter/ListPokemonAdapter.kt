@@ -27,8 +27,10 @@ class ListPokemonAdapter(
         val tvidefense: TextView
         val tvispecialAttack: TextView
         val tvispecialDefense: TextView
+        val tviId : TextView
 
         init {
+
            iviPokemonImage = view.findViewById(R.id.imgPokemon)
             tviPokemonName = view.findViewById(R.id.pokemonName)
             tviPokemonHP = view.findViewById(R.id.pokemonHp)
@@ -36,11 +38,12 @@ class ListPokemonAdapter(
             tvidefense = view.findViewById(R.id.PokemonDefense)
             tvispecialAttack = view.findViewById(R.id.specialAttack)
             tvispecialDefense = view.findViewById(R.id.specialDefense)
+            tviId=view.findViewById(R.id.tviID)
             view.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
-            listener(PokemonList[adapterPosition])//En que posicion se ha registrado el view holder
+            /*listener(PokemonList[adapterPosition])*///En que posicion se ha registrado el view holder
         }
     }
 
@@ -53,21 +56,25 @@ class ListPokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
+        holder.tviId.text = "${position+1}"
         holder.tviPokemonName.text = ListPokemones[position].name
-       holder.tviPokemonHP.text = ListPokemones[position].hp
+  /*     holder.tviPokemonHP.text = ListPokemones[position].hp
         holder.tviattack.text = ListPokemones[position].attack
         holder.tvidefense.text = ListPokemones[position].defense
         holder.tvispecialAttack.text = ListPokemones[position].specialAttack
-        holder.tvispecialDefense.text = ListPokemones[position].specialDefense
-
+        holder.tvispecialDefense.text = ListPokemones[position].specialDefense*/
+/*
         Glide.with(fragment).load(ListPokemones[position].imagen)
              .sizeMultiplier(0.2f)
             .fitCenter()
-            .into(holder.iviPokemonImage)
+            .into(holder.iviPokemonImage)*/
     }
 
     override fun getItemCount(): Int {//CUANTOS SON
+
         return ListPokemones.size
+
+
     }
 
 }

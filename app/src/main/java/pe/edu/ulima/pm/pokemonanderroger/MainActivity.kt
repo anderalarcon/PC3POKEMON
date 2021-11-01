@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.pokemonanderroger.fragments.FavoritosPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.fragments.ListPokemonFragment
+import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             changeFavoritosPokemonFragment()
         }
 
-      var pokemon1: Pokemon = Pokemon(
+/*      var pokemon1: Pokemon = Pokemon(
             "Ditto",
             "hp: 45",
             "attack: 45",
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             "especial defense: 100",
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"
         )
-        pokemonManager?.addPokemon(pokemon1)
+        pokemonManager?.addPokemon(pokemon1)*/
 
     }
 
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
 
     override fun onSelectCardPokemon(CardPokemon: Pokemon) {
         Toast.makeText(this,"tocaste",Toast.LENGTH_SHORT).show()
+        println("qwe")
 
   /*      println(CardPokemon.nombre)
         println(CardPokemon.attack)
