@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity:AppCompatActivity() {
+    var pantallaFragment = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -16,14 +18,27 @@ class LoginActivity:AppCompatActivity() {
 
         val btnContinuar=findViewById<Button>(R.id.btnContinuar)
         val btnFavoritos=findViewById<Button>(R.id.btnFavoritos)
-        val intent: Intent = Intent()
+
+
 
         btnContinuar.setOnClickListener{
-
+            val intent: Intent = Intent()
+            pantallaFragment = 1
+            val bundle:Bundle= Bundle()//Almacenamos data
+            bundle.putInt("pantallaFragment",pantallaFragment)
             intent.setClass(this, MainActivity::class.java) //pasamos next activity
+            intent.putExtra("data",bundle)
             startActivity(intent)
         }
         btnFavoritos.setOnClickListener{
+            pantallaFragment = 2
+            val intent: Intent = Intent()
+            val bundle:Bundle= Bundle()//Almacenamos data
+            bundle.putInt("pantallaFragment",pantallaFragment)
+            intent.setClass(this, MainActivity::class.java) //pasamos next activity
+            intent.putExtra("data",bundle)
+            startActivity(intent)
+
             Toast.makeText(this,"QUE MANDE A FRAGMENT FAVORITOS",Toast.LENGTH_SHORT).show()
 
         }
