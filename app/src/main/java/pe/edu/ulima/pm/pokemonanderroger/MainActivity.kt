@@ -11,7 +11,7 @@ import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
-class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemon {
+class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokemon {
 
     val fragments = mutableListOf<Fragment>()
     var pokemonManager: PokemonManager? = null
@@ -30,42 +30,42 @@ class MainActivity : AppCompatActivity(),ListPokemonFragment.interfaceListPokemo
             fragments.add(FavoritosPokemonFragment())
         }
 
-      if (pantallaFragment == 1){
+        if (pantallaFragment == 1) {
             pokemonManager = PokemonManager().getInstance()
             val ft = supportFragmentManager.beginTransaction()
             ft.add(R.id.main_layout, fragments[0])
             ft.commit()
-        }else{
+        } else {
             changeFavoritosPokemonFragment()
         }
 
-/*    var pokemon1: Pokemon = Pokemon(
+        var pokemon1: Pokemon = Pokemon(
             "1",
             "hp: 45",
-
-        )
-        pokemonManager?.addPokemon(pokemon1)*/
+"qwe"
+            )
+        pokemonManager?.addPokemon(pokemon1)
 
     }
 
-    private fun changeFavoritosPokemonFragment(){
+    private fun changeFavoritosPokemonFragment() {
         val fragment = fragments[1]
         val ft = supportFragmentManager.beginTransaction()
         //remplazar un nuevo fragment
-        ft.replace(R.id.main_layout,fragment)
+        ft.replace(R.id.main_layout, fragment)
         ft.commit()
     }
 
     override fun onSelectCardPokemon(CardPokemon: Pokemon) {
-        Toast.makeText(this,"tocaste",Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "tocaste", Toast.LENGTH_SHORT).show()
         println("qwe")
 
-  /*      println(CardPokemon.nombre)
-        println(CardPokemon.attack)
-        println(CardPokemon.defense)
-        println(CardPokemon.specialAttack)
-        println(CardPokemon.specialDefense)
-*/
+        /*      println(CardPokemon.nombre)
+              println(CardPokemon.attack)
+              println(CardPokemon.defense)
+              println(CardPokemon.specialAttack)
+              println(CardPokemon.specialDefense)
+      */
 
     }
 

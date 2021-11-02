@@ -88,34 +88,7 @@ class PokemonManager {
 
     }
 
-/*    fun getPokemonsRetrofit2(
-        id: Int, callbackOK: (PokeApiResponse) -> Unit,
 
-        ) {
-        val retrofit = Retrofit.Builder().baseUrl("https://pokeapi.co/api/v2/pokemon/")
-            .addConverterFactory(GsonConverterFactory.create()).build()
-
-        val service = retrofit.create(pokeAPI::class.java)
-
-        service.getPokemonInfo(id).enqueue(object : Callback<PokeApiResponse> {
-            override fun onResponse(
-                call: Call<PokeApiResponse>,
-                response: Response<PokeApiResponse>
-            ) {
-                println(response.body())
-                if (response.isSuccessful()) {
-                    callbackOK(response.body()!!)
-                }
-            }
-
-            override fun onFailure(call: Call<PokeApiResponse>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-
-        })
-
-    }*/
 
 
 }
