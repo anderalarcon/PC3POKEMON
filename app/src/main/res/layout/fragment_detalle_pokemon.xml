@@ -12,100 +12,186 @@
         android:orientation="vertical"
         >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="@font/pokemonsolid"
-        android:text="Ditto"
-        android:textColor="#FF6600"
-        android:textSize="30dp">
-
-    </TextView>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="235dp"
-        app:srcCompat="@drawable/ditto"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="3dp" />
-
         <TextView
-            android:id="@+id/pokemonHp_Detalle"
+            android:id="@+id/NombrePokemon_Detalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
             android:fontFamily="@font/pokemonsolid"
-            android:text="hp: 45"
-            android:textColor="@color/black"
-            android:textSize="15dp">
+            android:text="Ditto"
+            android:textColor="#FF6600"
+            android:textSize="30dp">
 
         </TextView>
 
-        <TextView
-            android:id="@+id/PokemonAttack_Detalle"
+        <ImageView
+            android:id="@+id/imageView_Detalle"
             android:layout_width="wrap_content"
+            android:layout_height="235dp"
+            app:srcCompat="@drawable/ditto"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="3dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/pokemonsolid"
+                android:text="hp: "
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/PokemonHp_Detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/pokemonsolid"
+                android:text="45"
+                android:textColor="@color/black"
+                android:textSize="15dp">
+
+            </TextView>
+        </LinearLayout>
 
 
-            android:fontFamily="@font/pokemonsolid"
-            android:text="attack: 49"
-            android:textColor="#3B4CCA"
-            android:textSize="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/pokemonsolid"
+                android:text="attack: "
+                android:textColor="#3B4CCA"
+                android:textSize="15dp">
 
-        <TextView
+            </TextView>
+
+            <TextView
+                android:id="@+id/PokemonAttack_Detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/pokemonsolid"
+                android:text="49"
+                android:textColor="#3B4CCA"
+                android:textSize="15dp">
+
+            </TextView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/pokemonsolid"
+                android:text="defense: "
+                android:textColor="#3B4CCA"
+                android:textSize="15dp">
+            </TextView>
+
+            <TextView
             android:id="@+id/PokemonDefense_Detalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/pokemonsolid"
-
-
-            android:text="defense: 49"
+            android:text="49"
             android:textColor="#3B4CCA"
             android:textSize="15dp">
-
         </TextView>
 
-        <TextView
-            android:id="@+id/specialAttack_Detalle"
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/pokemonsolid"
+                android:text="special attack: "
+                android:textColor="#FF0000"
+                android:textSize="15dp">
+            </TextView>
+
+            <TextView
+            android:id="@+id/PokemonspecialAttack_Detalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/pokemonsolid"
-
-
-
-            android:text="special attack: 65"
+            android:text="65"
             android:textColor="#FF0000"
             android:textSize="15dp">
-
         </TextView>
 
-        <TextView
-            android:id="@+id/specialDefense_Detalle"
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/pokemonsolid"
+                android:text="special defense: "
+                android:textColor="#FF0000"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <TextView
+            android:id="@+id/PokemonspecialDefense_Detalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:fontFamily="@font/pokemonsolid"
-
-
-            android:text="special defense: 65"
+            android:text="65"
             android:textColor="#FF0000"
             android:textSize="15dp">
-
             >
-
         </TextView>
+        </LinearLayout>
 
         <Button
+            android:id="@+id/btnFavoritosListaPokemon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Agregar a Favoritos"
+            android:backgroundTint="#3B4CCA"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/pokemonsolid"
+            />
+
+        <Button
+            android:id="@+id/btnRegresarListaPokemon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regresar"
             android:backgroundTint="#3B4CCA"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
