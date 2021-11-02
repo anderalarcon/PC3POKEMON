@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm.pokemonanderroger.model
 
+import android.util.Log
 import pe.edu.ulima.pm.pokemonanderroger.network.pokeAPI
 import retrofit2.Call
 import retrofit2.Callback
@@ -89,7 +90,7 @@ class PokemonManager {
     }
 
     fun getPokemonsPrimerNivel(
-        callbackOK: (List<Pokemon>) -> Unit,
+        callbackOK: (PokeApiResponse) -> Unit,
         callbackerror: (String) -> Unit
     ) {
         val retrofit = Retrofit.Builder().baseUrl(API_URL)
@@ -97,16 +98,43 @@ class PokemonManager {
 
         val service = retrofit.create(pokeAPI::class.java)
 
-        service.getPrimerNivel().enqueue(object : Callback<List<Pokemon>> {
-            override fun onResponse(call: Call<List<Pokemon>>, response: Response<List<Pokemon>>) {
-                if (response.isSuccessful()) {
-                    callbackOK(response.body()!!)
-                    println(response.body())
+        service.getPrimerNivel().enqueue(object : Callback<PokeApiResponse>{
+            override fun onResponse(
+                call: Call<PokeApiResponse>,
+                response: Response<PokeApiResponse>
+            ) {
+                if(response.isSuccessful()){
+                    var it:Int=0
+                    for((i,pok) in response.body()!!.results.withIndex()){
+                        service.getPokemonInfo(i+1).enqueue(object :Callback<Pokemon>{
+                            override fun onResponse(call: Call<Pokemon>, response2: Response<Pokemon>) {
+
+                                if(response2.isSuccessful()){
+
+                                    response.body()!!.results[it].stats=response2.body()!!.stats
+
+                                    println(response.body())
+                                    callbackOK(response.body()!!)
+                                   it= it.plus(1)
+                                }
+
+                            }
+
+                            override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                                Log.e("ProductManager", t.message!!)
+                                callbackerror(t.message!!)
+                            }
+
+                        })
+                    }
+
+
                 }
             }
 
-            override fun onFailure(call: Call<List<Pokemon>>, t: Throwable) {
-                println("error")
+            override fun onFailure(call: Call<PokeApiResponse>, t: Throwable) {
+                Log.e("ProductManager", t.message!!)
+                callbackerror(t.message!!)
             }
 
 

@@ -7,7 +7,8 @@ data class Pokemon(
     var id:String,
     var name :String,
     var url:String,
-    var stats:ArrayList<Habilidades>? =null
+    var stats:List<Habilidades>
+
 
 
 

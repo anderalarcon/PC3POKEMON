@@ -44,21 +44,21 @@ class ListPokemonFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
         val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
-   /*     PokemonManager().getInstance().getPokemones()
-            val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
+/*     PokemonManager().getInstance().getPokemones()
+
         rvi.adapter=ListPokemonAdapter(PokemonManager().getInstance().getPokemones(),this){
                 pokemon: Pokemon ->
             listener?.onSelectCardPokemon(pokemon)
         }*/
 
 
-        PokemonManager().getInstance().getPokemonsPrimerNivel({response:List<Pokemon> ->
-            rvi.adapter=ListPokemonAdapter(response,this){
+        PokemonManager().getInstance().getPokemonsPrimerNivel({response:PokeApiResponse ->
+            rvi.adapter=ListPokemonAdapter(response.results ,this){
                     pokemon: Pokemon ->
                 listener?.onSelectCardPokemon(pokemon)
             }
-        },{
-            println("Error")
+        },{ error ->
+            Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
         })
     }
 }

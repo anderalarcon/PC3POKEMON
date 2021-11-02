@@ -17,5 +17,5 @@ interface pokeAPI {
 
 
     @GET("pokemon")
-    fun getPrimerNivel(): Call<List<Pokemon>>
+    fun getPrimerNivel(): Call<PokeApiResponse>
 }

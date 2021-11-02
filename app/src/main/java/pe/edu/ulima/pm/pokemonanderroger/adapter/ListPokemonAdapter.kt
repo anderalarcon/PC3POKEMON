@@ -23,23 +23,23 @@ class ListPokemonAdapter(
         RecyclerView.ViewHolder(view), View.OnClickListener {
         val iviPokemonImage: ImageView
         val tviPokemonName: TextView
-       val tviPokemonHP: TextView
+        val tviPokemonHP: TextView
         val tviattack: TextView
         val tvidefense: TextView
         val tvispecialAttack: TextView
         val tvispecialDefense: TextView
-        val tviId : TextView
+        val tviId: TextView
 
         init {
 
-           iviPokemonImage = view.findViewById(R.id.imgPokemon)
+            iviPokemonImage = view.findViewById(R.id.imgPokemon)
             tviPokemonName = view.findViewById(R.id.pokemonName)
             tviPokemonHP = view.findViewById(R.id.pokemonHp)
             tviattack = view.findViewById(R.id.PokemonAttack)
             tvidefense = view.findViewById(R.id.PokemonDefense)
             tvispecialAttack = view.findViewById(R.id.specialAttack)
             tvispecialDefense = view.findViewById(R.id.specialDefense)
-            tviId=view.findViewById(R.id.tviID)
+            tviId = view.findViewById(R.id.tviID)
             view.setOnClickListener(this)
         }
 
@@ -57,13 +57,15 @@ class ListPokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
-        holder.tviId.text = "${position+1}"
+        println(ListPokemones)
+     /*   holder.tviId.text = "${position + 1}"*/
         holder.tviPokemonName.text = ListPokemones[position].name
-  /*     holder.tviPokemonHP.text = ListPokemones[position].hp
-        holder.tviattack.text = ListPokemones[position].attack
-        holder.tvidefense.text = ListPokemones[position].defense
-        holder.tvispecialAttack.text = ListPokemones[position].specialAttack
-        holder.tvispecialDefense.text = ListPokemones[position].specialDefense*/
+      holder.tviPokemonHP.text ="Hp: ${ListPokemones[position].stats[0]!!.base_stat}"
+        holder.tviattack.text ="Ataque: ${ListPokemones[position].stats[1]!!.base_stat}"
+        holder.tvidefense.text ="Defensa: ${ListPokemones[position].stats[2]!!.base_stat}"
+        holder.tvispecialAttack.text ="Special Attack: ${ListPokemones[position].stats[3]!!.base_stat}"
+        holder.tvispecialDefense.text ="Special Defense: ${ListPokemones[position].stats[4]!!.base_stat}"
+
 /*
         Glide.with(fragment).load(ListPokemones[position].imagen)
              .sizeMultiplier(0.2f)
