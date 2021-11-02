@@ -43,14 +43,22 @@ class ListPokemonFragment : Fragment() {
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-
-        PokemonManager().getInstance().getPokemones()
+        val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
+   /*     PokemonManager().getInstance().getPokemones()
             val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
         rvi.adapter=ListPokemonAdapter(PokemonManager().getInstance().getPokemones(),this){
                 pokemon: Pokemon ->
             listener?.onSelectCardPokemon(pokemon)
-        }
+        }*/
 
 
+        PokemonManager().getInstance().getPokemonsPrimerNivel({response:List<Pokemon> ->
+            rvi.adapter=ListPokemonAdapter(response,this){
+                    pokemon: Pokemon ->
+                listener?.onSelectCardPokemon(pokemon)
+            }
+        },{
+            println("Error")
+        })
     }
 }

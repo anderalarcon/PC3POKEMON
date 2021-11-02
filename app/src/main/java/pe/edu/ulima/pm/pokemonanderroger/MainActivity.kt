@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
         if (fragments.size == 0) {
             fragments.add(ListPokemonFragment())
             fragments.add(FavoritosPokemonFragment())
+
         }
 
         if (pantallaFragment == 1) {
@@ -35,16 +36,17 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
             val ft = supportFragmentManager.beginTransaction()
             ft.add(R.id.main_layout, fragments[0])
             ft.commit()
+            var pokemon1= Pokemon(
+                "1",
+                "hp: 45",
+                "qwe"
+            )
+            pokemonManager?.addPokemon(pokemon1)
         } else {
             changeFavoritosPokemonFragment()
         }
 
-        var pokemon1: Pokemon = Pokemon(
-            "1",
-            "hp: 45",
-"qwe"
-            )
-        pokemonManager?.addPokemon(pokemon1)
+
 
     }
 

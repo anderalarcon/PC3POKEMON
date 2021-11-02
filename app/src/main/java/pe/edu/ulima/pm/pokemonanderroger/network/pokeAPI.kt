@@ -14,4 +14,8 @@ interface pokeAPI {
 
     @GET("pokemon/{id}")
     fun getPokemonInfo(@Path(value = "id")Id:Int): Call<Pokemon>
+
+
+    @GET("pokemon")
+    fun getPrimerNivel(): Call<List<Pokemon>>
 }

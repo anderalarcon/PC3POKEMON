@@ -49,33 +49,33 @@ class PokemonManager {
                 response: Response<PokeApiResponse>
             ) {
                 if (response.isSuccessful()) {
-                    println("primero: "+response.body())
+                    println("primero: " + response.body())
+                    callbackOK(response.body()!!)
+                    /*        println(response.body()!!.results[0])
+                            for ((index,pokemon) in response.body()!!.results.withIndex())
+                            {
 
-                    println(response.body()!!.results[0])
-                    for ((index,pokemon) in response.body()!!.results.withIndex())
-                    {
+                                val service2 = retrofit.create(pokeAPI::class.java)
 
-                        val service2 = retrofit.create(pokeAPI::class.java)
-
-                        service2.getPokemonInfo(pokemon.url.split("/")[6].toInt())
-                            .enqueue(object : Callback<Pokemon> {
-                                override fun onResponse(
-                                    call: Call<Pokemon>,
-                                    response2: Response<Pokemon>
-                                ) {
+                                service2.getPokemonInfo(pokemon.url.split("/")[6].toInt())
+                                    .enqueue(object : Callback<Pokemon> {
+                                        override fun onResponse(
+                                            call: Call<Pokemon>,
+                                            response2: Response<Pokemon>
+                                        ) {
 
 
-                                    response.body()!!.results[index]=response2.body()!!
-                                    println("SETEADO: "+response.body())
+                                            response.body()!!.results[index]=response2.body()!!
+                                            println("SETEADO: "+response.body())
 
-                                }
+                                        }
 
-                                override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                                    TODO("Not yet implemented")
-                                }
+                                        override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                                            TODO("Not yet implemented")
+                                        }
 
-                            })
-                    }
+                                    })
+                            }*/
                 }
 
             }
@@ -88,7 +88,31 @@ class PokemonManager {
 
     }
 
+    fun getPokemonsPrimerNivel(
+        callbackOK: (List<Pokemon>) -> Unit,
+        callbackerror: (String) -> Unit
+    ) {
+        val retrofit = Retrofit.Builder().baseUrl(API_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
 
+        val service = retrofit.create(pokeAPI::class.java)
+
+        service.getPrimerNivel().enqueue(object : Callback<List<Pokemon>> {
+            override fun onResponse(call: Call<List<Pokemon>>, response: Response<List<Pokemon>>) {
+                if (response.isSuccessful()) {
+                    callbackOK(response.body()!!)
+                    println(response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<List<Pokemon>>, t: Throwable) {
+                println("error")
+            }
+
+
+        })
+
+    }
 
 
 }
