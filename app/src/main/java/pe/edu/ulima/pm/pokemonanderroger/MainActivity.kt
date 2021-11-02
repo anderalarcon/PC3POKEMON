@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import pe.edu.ulima.pm.pokemonanderroger.fragments.DetallesPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.fragments.FavoritosPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.fragments.ListPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
-class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokemon {
+class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokemon, DetallesPokemonFragment.interfaceDetallePokemon {
 
     val fragments = mutableListOf<Fragment>()
     var pokemonManager: PokemonManager? = null
@@ -41,10 +42,17 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
 
         var pokemon1: Pokemon = Pokemon(
             "1",
-            "hp: 45",
+            "Ditto",
 "qwe"
             )
+
+        var pokemon2: Pokemon = Pokemon(
+            "2",
+            "torchic",
+            "qwe"
+        )
         pokemonManager?.addPokemon(pokemon1)
+        pokemonManager?.addPokemon(pokemon2)
 
     }
 
@@ -56,7 +64,34 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
         ft.commit()
     }
 
+    private fun changeDetallePokemonFragment(pokemon : Pokemon){
+        val fragment = DetallesPokemonFragment(pokemon)
+        val ft = supportFragmentManager.beginTransaction()
+        //remplazar un nuevo fragment
+        ft.replace(R.id.main_layout,fragment)
+        ft.commit()
+    }
+
+    override fun OnClickRegresarButton() {
+        changeListPokemonFragment()
+    }
+
+    override fun OnClickFavoritosButton() {
+        //hacer la actualización a favoritos
+        changeListPokemonFragment()
+        Toast.makeText(this,"Se ha agregado a favoritos",Toast.LENGTH_SHORT).show()
+    }
+
+    private fun changeListPokemonFragment(){
+        val fragment = fragments[0]
+        val ft = supportFragmentManager.beginTransaction()
+        //remplazar un nuevo fragment
+        ft.replace(R.id.main_layout,fragment)
+        ft.commit()
+    }
+
     override fun onSelectCardPokemon(CardPokemon: Pokemon) {
+        changeDetallePokemonFragment(CardPokemon)
         Toast.makeText(this, "tocaste", Toast.LENGTH_SHORT).show()
         println("qwe")
 
