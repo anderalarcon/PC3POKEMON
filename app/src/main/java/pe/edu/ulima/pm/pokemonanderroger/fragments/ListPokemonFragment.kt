@@ -44,27 +44,19 @@ class ListPokemonFragment : Fragment() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-      PokemonManager().getInstance().getPokemonsRetrofit({ response:PokeApiResponse ->
+        PokemonManager().getInstance().getPokemonsRetrofit({ response: PokeApiResponse ->
             val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
-          for(i in response.results){
-              PokemonManager().getInstance().getPokemonsRetrofit2(i.url.split("/")[6].toInt())
-          }
 
-      /*
-            rvi.adapter = ListPokemonAdapter(
-               response.results,
-                this
-            ) { pokemon: Pokemon ->
+
+            rvi.adapter = ListPokemonAdapter(response.results, this) {
+                    pokemon: Pokemon ->
                 listener?.onSelectCardPokemon(pokemon)
-            }*/
+            }
+
+
         }, { error ->
             Toast.makeText(activity, "$error", Toast.LENGTH_SHORT).show()
         })
-
-
-
-
-
 
 
     }

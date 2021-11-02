@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.pokemonanderroger.R
+import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 
 class ListPokemonAdapter(

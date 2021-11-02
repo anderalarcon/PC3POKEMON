@@ -4,9 +4,10 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class Pokemon(
+    var id:String,
     var name :String,
     var url:String,
-    var stats:ArrayList<Habilidades>
+    var stats:ArrayList<Habilidades>? =null
 
 
 

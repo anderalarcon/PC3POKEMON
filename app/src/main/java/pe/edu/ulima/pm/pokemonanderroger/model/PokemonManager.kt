@@ -49,9 +49,35 @@ class PokemonManager {
                 response: Response<PokeApiResponse>
             ) {
                 if (response.isSuccessful()) {
-                    callbackOK(response.body()!!)
-                    println(response.body())
+                    println("primero: "+response.body())
+
+                    println(response.body()!!.results[0])
+                    for ((index,pokemon) in response.body()!!.results.withIndex())
+                    {
+
+                        val service2 = retrofit.create(pokeAPI::class.java)
+
+                        service2.getPokemonInfo(pokemon.url.split("/")[6].toInt())
+                            .enqueue(object : Callback<Pokemon> {
+                                override fun onResponse(
+                                    call: Call<Pokemon>,
+                                    response2: Response<Pokemon>
+                                ) {
+
+
+                                    response.body()!!.results[index]=response2.body()!!
+                                    println("SETEADO: "+response.body())
+
+                                }
+
+                                override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                                    TODO("Not yet implemented")
+                                }
+
+                            })
+                    }
                 }
+
             }
 
             override fun onFailure(call: Call<PokeApiResponse>, t: Throwable) {
@@ -62,28 +88,34 @@ class PokemonManager {
 
     }
 
-    fun getPokemonsRetrofit2(id:Int) {
+/*    fun getPokemonsRetrofit2(
+        id: Int, callbackOK: (PokeApiResponse) -> Unit,
+
+        ) {
         val retrofit = Retrofit.Builder().baseUrl("https://pokeapi.co/api/v2/pokemon/")
             .addConverterFactory(GsonConverterFactory.create()).build()
 
         val service = retrofit.create(pokeAPI::class.java)
 
-        service.getPokemonInfo(id).enqueue(object : Callback<Pokemon> {
-            override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
+        service.getPokemonInfo(id).enqueue(object : Callback<PokeApiResponse> {
+            override fun onResponse(
+                call: Call<PokeApiResponse>,
+                response: Response<PokeApiResponse>
+            ) {
+                println(response.body())
                 if (response.isSuccessful()) {
-                    println(response.body())
+                    callbackOK(response.body()!!)
                 }
-
             }
 
-            override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                println("err")
+            override fun onFailure(call: Call<PokeApiResponse>, t: Throwable) {
+                TODO("Not yet implemented")
             }
 
 
         })
 
-    }
+    }*/
 
 
 }

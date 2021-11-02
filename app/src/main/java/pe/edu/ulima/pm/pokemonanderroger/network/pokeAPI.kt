@@ -12,6 +12,6 @@ interface pokeAPI {
     @GET("pokemon/")
     fun getALLPokemons(): Call<PokeApiResponse>
 
-    @GET("{id}")
+    @GET("pokemon/{id}")
     fun getPokemonInfo(@Path(value = "id")Id:Int): Call<Pokemon>
 }
