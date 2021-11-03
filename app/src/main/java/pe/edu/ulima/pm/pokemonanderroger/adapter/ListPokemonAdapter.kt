@@ -58,7 +58,7 @@ class ListPokemonAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
         println(ListPokemones)
-     /*   holder.tviId.text = "${position + 1}"*/
+        holder.tviId.text = ListPokemones[position].id
         holder.tviPokemonName.text = ListPokemones[position].name
       holder.tviPokemonHP.text ="Hp: ${ListPokemones[position].stats[0]!!.base_stat}"
         holder.tviattack.text ="Ataque: ${ListPokemones[position].stats[1]!!.base_stat}"
@@ -66,11 +66,10 @@ class ListPokemonAdapter(
         holder.tvispecialAttack.text ="Special Attack: ${ListPokemones[position].stats[3]!!.base_stat}"
         holder.tvispecialDefense.text ="Special Defense: ${ListPokemones[position].stats[4]!!.base_stat}"
 
-/*
-        Glide.with(fragment).load(ListPokemones[position].imagen)
+      Glide.with(fragment).load(ListPokemones[position].sprites.back_default)
              .sizeMultiplier(0.2f)
             .fitCenter()
-            .into(holder.iviPokemonImage)*/
+            .into(holder.iviPokemonImage)
     }
 
     override fun getItemCount(): Int {//CUANTOS SON

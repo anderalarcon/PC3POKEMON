@@ -106,14 +106,14 @@ class PokemonManager {
                 if(response.isSuccessful()){
                     var it:Int=0
                     for((i,pok) in response.body()!!.results.withIndex()){
-                        service.getPokemonInfo(i+1).enqueue(object :Callback<Pokemon>{
+                        service.getPokemonInfo(pok.url.split("/")[6].toInt()).enqueue(object :Callback<Pokemon>{
                             override fun onResponse(call: Call<Pokemon>, response2: Response<Pokemon>) {
 
                                 if(response2.isSuccessful()){
-
-                                    response.body()!!.results[it].stats=response2.body()!!.stats
-
-                                    println(response.body())
+                                    response.body()!!.results[i].stats=response2.body()!!.stats
+                                    response.body()!!.results[i].sprites=response2.body()!!.sprites
+                                    response.body()!!.results[i].id =response2.body()!!.id
+                                    println(response.body()!!)
                                     callbackOK(response.body()!!)
                                    it= it.plus(1)
                                 }
