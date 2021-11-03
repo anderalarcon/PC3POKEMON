@@ -66,8 +66,8 @@ class ListPokemonAdapter(
         holder.tvispecialAttack.text ="Special Attack: ${ListPokemones[position].stats[3]!!.base_stat}"
         holder.tvispecialDefense.text ="Special Defense: ${ListPokemones[position].stats[4]!!.base_stat}"
 
-      Glide.with(fragment).load(ListPokemones[position].sprites.back_default)
-             .sizeMultiplier(0.2f)
+      Glide.with(fragment).load(ListPokemones[position].sprites.other.officialartwork.front_default)
+           /*  .sizeMultiplier(0.2f)*/
             .fitCenter()
             .into(holder.iviPokemonImage)
     }

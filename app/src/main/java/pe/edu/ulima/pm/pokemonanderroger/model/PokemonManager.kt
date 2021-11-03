@@ -113,6 +113,7 @@ class PokemonManager {
                                     response.body()!!.results[i].stats=response2.body()!!.stats
                                     response.body()!!.results[i].sprites=response2.body()!!.sprites
                                     response.body()!!.results[i].id =response2.body()!!.id
+
                                     println(response.body()!!)
                                     callbackOK(response.body()!!)
                                    it= it.plus(1)
