@@ -60,13 +60,13 @@ class ListPokemonAdapter(
         println(ListPokemones)
         holder.tviId.text = ListPokemones[position].id
         holder.tviPokemonName.text = ListPokemones[position].name
-      holder.tviPokemonHP.text ="Hp: ${ListPokemones[position].stats[0]!!.base_stat}"
-        holder.tviattack.text ="Ataque: ${ListPokemones[position].stats[1]!!.base_stat}"
-        holder.tvidefense.text ="Defensa: ${ListPokemones[position].stats[2]!!.base_stat}"
-        holder.tvispecialAttack.text ="Special Attack: ${ListPokemones[position].stats[3]!!.base_stat}"
-        holder.tvispecialDefense.text ="Special Defense: ${ListPokemones[position].stats[4]!!.base_stat}"
+      holder.tviPokemonHP.text ="Hp: ${ListPokemones[position].hp}"
+        holder.tviattack.text ="Ataque: ${ListPokemones[position].attack}"
+        holder.tvidefense.text ="Defensa: ${ListPokemones[position].defense}"
+        holder.tvispecialAttack.text ="Special Attack: ${ListPokemones[position].special_attack}"
+        holder.tvispecialDefense.text ="Special Defense: ${ListPokemones[position].special_defense}"
 
-      Glide.with(fragment).load(ListPokemones[position].sprites.other.officialartwork.front_default)
+      Glide.with(fragment).load(ListPokemones[position].url)
            /*  .sizeMultiplier(0.2f)*/
             .fitCenter()
             .into(holder.iviPokemonImage)

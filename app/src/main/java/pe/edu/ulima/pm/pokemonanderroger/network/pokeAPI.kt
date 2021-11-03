@@ -18,4 +18,9 @@ interface pokeAPI {
 
     @GET("pokemon?limit=20&offset=0")
     fun getPrimerNivel(): Call<PokeApiResponse>
+
+
+
+    @GET("pokemon/{id}")
+    fun getPokemonInfo2(@Path(value = "id")Id:Int): Call<Pokemon>
 }
