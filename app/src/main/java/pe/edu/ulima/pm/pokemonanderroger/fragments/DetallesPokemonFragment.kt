@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 
@@ -45,17 +46,17 @@ class DetallesPokemonFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<TextView>(R.id.NombrePokemon_Detalle).setText(pokemon.name)
-        /*view.findViewById<TextView>(R.id.PokemonHp_Detalle).setText(pokemon.hp)
+        view.findViewById<TextView>(R.id.PokemonHp_Detalle).setText(pokemon.hp)
         view.findViewById<TextView>(R.id.PokemonAttack_Detalle).setText(pokemon.attack)
         view.findViewById<TextView>(R.id.PokemonDefense_Detalle).setText(pokemon.defense)
-        view.findViewById<TextView>(R.id.PokemonspecialAttack_Detalle).setText(pokemon.specialAttack)
-        view.findViewById<TextView>(R.id.PokemonspecialDefense_Detalle).setText(pokemon.specialDefense)*/
+        view.findViewById<TextView>(R.id.PokemonspecialAttack_Detalle).setText(pokemon.special_attack)
+        view.findViewById<TextView>(R.id.PokemonspecialDefense_Detalle).setText(pokemon.special_defense)
 
-        view.findViewById<TextView>(R.id.PokemonHp_Detalle).setText("100")
-        view.findViewById<TextView>(R.id.PokemonAttack_Detalle).setText("67")
-        view.findViewById<TextView>(R.id.PokemonDefense_Detalle).setText("14")
-        view.findViewById<TextView>(R.id.PokemonspecialAttack_Detalle).setText("44")
-        view.findViewById<TextView>(R.id.PokemonspecialDefense_Detalle).setText("44")
+        Glide.with(view).load(pokemon.url)
+            /*  .sizeMultiplier(0.2f)*/
+            .fitCenter()
+            .into(view.findViewById(R.id.imageView_Detalle))
+
 
         val butRegresar = view.findViewById<Button>(R.id.btnRegresarListaPokemon)
         val butFavoritos = view.findViewById<Button>(R.id.btnFavoritosListaPokemon)

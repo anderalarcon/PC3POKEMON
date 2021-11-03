@@ -43,7 +43,7 @@
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/pokemonsolid"
                 android:text="hp: "
-                android:textColor="@color/black"
+                android:textColor="#008F39"
                 android:textSize="15dp">
 
             </TextView>
@@ -55,7 +55,7 @@
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/pokemonsolid"
                 android:text="45"
-                android:textColor="@color/black"
+                android:textColor="#008F39"
                 android:textSize="15dp">
 
             </TextView>
