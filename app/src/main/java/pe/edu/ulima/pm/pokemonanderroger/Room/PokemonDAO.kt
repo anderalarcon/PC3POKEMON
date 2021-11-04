@@ -5,6 +5,10 @@ import androidx.room.Insert
 import androidx.room.Query
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
+import androidx.lifecycle.LiveData
+
+
+
 
 
 @Dao
@@ -21,5 +25,7 @@ interface PokemonDAO {
     @Insert
     fun insert(pokemon: Pokemon)
 
+    @Query("SELECT count(*) from Pokemon")
+    fun selectAllUsers(): Int
 
 }

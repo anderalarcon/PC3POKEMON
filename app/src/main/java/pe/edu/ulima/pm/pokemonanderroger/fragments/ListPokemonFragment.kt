@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import pe.edu.ulima.pm.pokemonanderroger.R
+import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListPokemonAdapter
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
@@ -20,6 +22,10 @@ class ListPokemonFragment : Fragment() {
         //al hacer touch en el activity main
         fun onSelectCardPokemon(CardPokemon: Pokemon)
     }
+   /* private val db = Room.databaseBuilder(requireActivity().applicationContext, PkmnAppDatabase::class.java,
+        "db_pokemon").allowMainThreadQueries()
+        .fallbackToDestructiveMigration()
+        .build()*/
 
     private var listener: interfaceListPokemon? = null
 
@@ -47,22 +53,31 @@ class ListPokemonFragment : Fragment() {
 
 
 
-    /* PokemonManager(requireActivity().applicationContext).getPokemonsPrimerNivel({response:PokeApiResponse ->
-            rvi.adapter=ListPokemonAdapter(response.results ,this){
-                    pokemon: Pokemon ->
-                listener?.onSelectCardPokemon(pokemon)
-            }
-        },{ error ->
-            Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
-        })*/
 
- PokemonManager(requireActivity().applicationContext).getProductsByRoom({response: List<Pokemon> ->
-            rvi.adapter=ListPokemonAdapter(response ,this){
-                    pokemon: Pokemon ->
-                listener?.onSelectCardPokemon(pokemon)
+
+        PokemonManager(requireActivity().applicationContext).observe({ obs: Int ->
+            if (obs == 0) {
+                PokemonManager(requireActivity().applicationContext).getPokemonsPrimerNivel({ response: PokeApiResponse ->
+                    rvi.adapter = ListPokemonAdapter(response.results, this) { pokemon: Pokemon ->
+                        listener?.onSelectCardPokemon(pokemon)
+                        println("no hay nada")
+                    }
+                }, { error ->
+                    Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
+                })
+            } else {
+                PokemonManager(requireActivity().applicationContext).getProductsByRoom({ response: List<Pokemon> ->
+                    rvi.adapter = ListPokemonAdapter(response, this) { pokemon: Pokemon ->
+                        listener?.onSelectCardPokemon(pokemon)
+                        println("hay algo")
+                    }
+                }, { error ->
+                    Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
+                })
             }
-        },{ error ->
-            Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
+        }, {
+
         })
+
     }
 }
