@@ -52,8 +52,17 @@ class ListPokemonFragment : Fragment() {
         }*/
 
 
-        PokemonManager().getInstance().getPokemonsPrimerNivel({response:PokeApiResponse ->
+      /* PokemonManager(requireActivity().applicationContext).getPokemonsPrimerNivel({response:PokeApiResponse ->
             rvi.adapter=ListPokemonAdapter(response.results ,this){
+                    pokemon: Pokemon ->
+                listener?.onSelectCardPokemon(pokemon)
+            }
+        },{ error ->
+            Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
+        })*/
+
+    PokemonManager(requireActivity().applicationContext).getProductsByRoom({response: List<Pokemon> ->
+            rvi.adapter=ListPokemonAdapter(response ,this){
                     pokemon: Pokemon ->
                 listener?.onSelectCardPokemon(pokemon)
             }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.pokemonanderroger.R
+import pe.edu.ulima.pm.pokemonanderroger.model.Habilidades
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 
@@ -58,6 +59,7 @@ class ListPokemonAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
         println(ListPokemones)
+        var List : List<Habilidades>
         holder.tviId.text = ListPokemones[position].id
         holder.tviPokemonName.text = ListPokemones[position].name
       holder.tviPokemonHP.text ="Hp: ${ListPokemones[position].hp}"
@@ -65,6 +67,7 @@ class ListPokemonAdapter(
         holder.tvidefense.text ="Defensa: ${ListPokemones[position].defense}"
         holder.tvispecialAttack.text ="Special Attack: ${ListPokemones[position].special_attack}"
         holder.tvispecialDefense.text ="Special Defense: ${ListPokemones[position].special_defense}"
+        //List = ListPokemones[position].stats
 
       Glide.with(fragment).load(ListPokemones[position].url)
            /*  .sizeMultiplier(0.2f)*/
