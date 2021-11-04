@@ -239,6 +239,11 @@ class PokemonManager(context: Context) {
 
     }
 
+    fun observe(callbackOK : (Int) -> Unit, callbackError : (String) -> Unit){
+        val pokemon : Int= db.PokemonDAO().selectAllUsers()
+        callbackOK(pokemon)
+    }
+
 
 }
 
