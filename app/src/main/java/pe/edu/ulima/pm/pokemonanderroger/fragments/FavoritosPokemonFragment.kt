@@ -43,7 +43,7 @@ class FavoritosPokemonFragment: Fragment() {
         val rvi = view.findViewById<RecyclerView>(R.id.ReciclerFavsPokemon)
 
         rvi.adapter =ListFavoritosPokemonAdapter(
-            PokemonManager().getInstance().getPokemones(),
+            PokemonManager(requireActivity().applicationContext).getPokemones(),
             this,
             {
                     p:Pokemon ->

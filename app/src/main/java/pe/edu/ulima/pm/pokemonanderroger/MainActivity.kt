@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
         }
 
         if (pantallaFragment == 1) {
-            pokemonManager = PokemonManager().getInstance()
+            pokemonManager = PokemonManager(this)
             val ft = supportFragmentManager.beginTransaction()
             ft.add(R.id.main_layout, fragments[0])
             ft.commit()
