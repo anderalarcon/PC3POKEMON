@@ -10,10 +10,9 @@ import java.lang.reflect.Type
 
 @Entity
 data class Pokemon(
-    @PrimaryKey(autoGenerate = true)
-    var id_auto:Int?,
-    @ColumnInfo ( name = "id")
-    var id:String?,
+
+    @PrimaryKey
+    var id:Int?,
     @ColumnInfo ( name = "name")
     var name :String?,
     @ColumnInfo ( name = "url")
@@ -35,7 +34,7 @@ data class Pokemon(
     @Ignore
     var sprites:SpriteAtributes?
 
-) { constructor(): this(null,null,null,null,null,null,null,null,null,null,null)
+) { constructor(): this(null,null,null,null,null,null,null,null,null,null)
 }
 
 /*object Converters {

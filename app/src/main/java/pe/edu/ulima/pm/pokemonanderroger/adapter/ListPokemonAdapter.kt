@@ -60,7 +60,7 @@ class ListPokemonAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
         println(ListPokemones)
         var List : List<Habilidades>
-        holder.tviId.text = ListPokemones[position].id
+        holder.tviId.text = ListPokemones[position].id.toString()
         holder.tviPokemonName.text = ListPokemones[position].name
       holder.tviPokemonHP.text ="Hp: ${ListPokemones[position].hp}"
         holder.tviattack.text ="Ataque: ${ListPokemones[position].attack}"

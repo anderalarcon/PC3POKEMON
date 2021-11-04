@@ -7,7 +7,7 @@ import androidx.room.TypeConverters
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 
-@Database(entities = [Pokemon::class], version = 8)
+@Database(entities = [Pokemon::class], version = 10)
 //@TypeConverters( Converters::class)
 abstract class PkmnAppDatabase: RoomDatabase() {
 

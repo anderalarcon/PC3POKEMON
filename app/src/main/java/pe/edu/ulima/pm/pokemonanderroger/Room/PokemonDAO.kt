@@ -9,7 +9,7 @@ import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 @Dao
 interface PokemonDAO {
 
-    @Query("SELECT * FROM Pokemon")
+    @Query("SELECT * FROM Pokemon order by id ASC")
     fun findAll(): List<Pokemon>
 
     @Query("SELECT * FROM Pokemon WHERE id=:id")

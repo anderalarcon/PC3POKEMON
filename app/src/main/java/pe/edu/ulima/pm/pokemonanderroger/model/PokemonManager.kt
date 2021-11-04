@@ -201,8 +201,7 @@ class PokemonManager(context: Context) {
                                         response.body()!!.results[i].url =
                                             response2.body()!!.sprites?.other?.officialartwork?.front_default
                                         //*   response.body()!!.results[i].stats=response2.body()!!.stats
-                                        response.body()!!.results[i].sprites =
-                                            response2.body()!!.sprites
+                                        response.body()!!.results[i].sprites = response2.body()!!.sprites
                                         response.body()!!.results[i].id = response2.body()!!.id
                                         db.PokemonDAO().insert(response.body()!!.results[i])
                                         if(i==19){
