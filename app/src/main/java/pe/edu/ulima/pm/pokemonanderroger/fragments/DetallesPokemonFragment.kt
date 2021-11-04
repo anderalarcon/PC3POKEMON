@@ -9,9 +9,14 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.room.Room
 import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.pokemonanderroger.R
+import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
+
 
 class DetallesPokemonFragment(
     val pokemon: Pokemon
@@ -34,6 +39,9 @@ class DetallesPokemonFragment(
         super.onAttach(context)
         listener = context as? interfaceDetallePokemon
     }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,6 +74,9 @@ class DetallesPokemonFragment(
         }
 
         butFavoritos.setOnClickListener { _: View ->
+
+            var pokemonfav = PokemonFavorito(pokemon.id, pokemon.name)
+            PokemonManager(requireActivity().applicationContext).saveIntoRoomFavs(pokemonfav)
             listener?.OnClickFavoritosButton()
         }
 

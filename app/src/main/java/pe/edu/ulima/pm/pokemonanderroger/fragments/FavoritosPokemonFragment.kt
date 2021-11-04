@@ -12,6 +12,7 @@ import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListFavoritosPokemonAdapter
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListPokemonAdapter
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
 class FavoritosPokemonFragment: Fragment() {
@@ -42,14 +43,24 @@ class FavoritosPokemonFragment: Fragment() {
 
         val rvi = view.findViewById<RecyclerView>(R.id.ReciclerFavsPokemon)
 
-        rvi.adapter =ListFavoritosPokemonAdapter(
+        PokemonManager(requireActivity().applicationContext).getPokemonFavsByRoom({response: List<PokemonFavorito> ->
+            rvi.adapter=ListFavoritosPokemonAdapter(response ,this){
+                    /*pokemon: PokemonFavorito ->
+                listener?.onSelectCardPokemon(pokemon)*/
+            }
+        },{ error ->
+            Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
+        })
+
+
+       /* rvi.adapter =ListFavoritosPokemonAdapter(
             PokemonManager(requireActivity().applicationContext).getPokemones(),
             this,
             {
                     p:Pokemon ->
 
 
-            })
+            })*/
 
 /*
       PokemonManager().getInstance().getProductsRetrofit({ pokemonList: List<Pokemon> ->

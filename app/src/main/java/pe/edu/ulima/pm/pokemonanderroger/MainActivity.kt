@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.room.Room
+import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
 import pe.edu.ulima.pm.pokemonanderroger.fragments.DetallesPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.fragments.FavoritosPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.fragments.ListPokemonFragment
-import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
-import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
-import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
+import pe.edu.ulima.pm.pokemonanderroger.model.*
+import java.sql.Savepoint
 
 class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokemon,
     DetallesPokemonFragment.interfaceDetallePokemon {
@@ -19,7 +20,9 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
     var pokemonManager: PokemonManager? = null
     var pantallaFragment: Int = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         pantallaFragment = intent.getBundleExtra("data")?.getInt("pantallaFragment")!!
         println("pantalla: " + pantallaFragment)
         super.onCreate(savedInstanceState)
@@ -82,6 +85,12 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
     override fun OnClickRegresarButton() {
         changeListPokemonFragment()
     }
+
+
+
+
+
+
 
     override fun OnClickFavoritosButton() {
         //hacer la actualización a favoritos
