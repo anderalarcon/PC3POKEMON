@@ -6,10 +6,13 @@ import androidx.room.TypeConverters
 //import pe.edu.ulima.pm.pokemonanderroger.model.Converters
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
 
-@Database(entities = [Pokemon::class], version = 12)
+
+@Database(entities = [Pokemon::class, PokemonFavorito::class], version = 12)
 //@TypeConverters( Converters::class)
 abstract class PkmnAppDatabase: RoomDatabase() {
 
     abstract fun PokemonDAO(): PokemonDAO
+    abstract  fun PokemonFavsDAO() : PokemonFavsDAO
 }

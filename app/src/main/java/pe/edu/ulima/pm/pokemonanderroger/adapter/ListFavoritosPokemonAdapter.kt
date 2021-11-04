@@ -8,14 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
 
 class ListFavoritosPokemonAdapter(
-    private val ListPokemonesFavs: List<Pokemon>,
+    private val ListPokemonesFavs: List<PokemonFavorito>,
     private val fragment: Fragment,
-    private val listener: (Pokemon) -> Unit
+    private val listener: (PokemonFavorito) -> Unit
 
 ): RecyclerView.Adapter<ListFavoritosPokemonAdapter.ViewHolder>() {
-    class ViewHolder(view: View, val listener: (Pokemon) -> Unit, val ListPokemonesFavs: List<Pokemon>) :
+    class ViewHolder(view: View, val listener: (PokemonFavorito) -> Unit, val ListPokemonesFavs: List<PokemonFavorito>) :
         RecyclerView.ViewHolder(view), View.OnClickListener {
         val tviPokemonNameFavs: TextView
 
@@ -39,7 +40,7 @@ class ListFavoritosPokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-     /*   holder.tviPokemonNameFavs.text = ListPokemonesFavs[position].count*/
+     holder.tviPokemonNameFavs.text = ListPokemonesFavs[position].name
     }
 
     override fun getItemCount(): Int {

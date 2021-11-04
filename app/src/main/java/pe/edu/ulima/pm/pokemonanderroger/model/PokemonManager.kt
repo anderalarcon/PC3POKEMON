@@ -143,10 +143,20 @@ class PokemonManager(context: Context) {
 
     }*/
 
-    private val db = Room.databaseBuilder(context, PkmnAppDatabase::class.java,
+     val db = Room.databaseBuilder(context, PkmnAppDatabase::class.java,
         "db_pokemon").allowMainThreadQueries()
         .fallbackToDestructiveMigration()
         .build()
+
+     fun saveIntoRoomFavs(pokemonFavs: PokemonFavorito) {
+        //el it representa un item videogame que recorre
+
+        db.PokemonFavsDAO().insertFavs(pokemonFavs)
+    }
+    fun getPokemonFavsByRoom(callbackOK : (List<PokemonFavorito>) -> Unit, callbackError : (String) -> Unit){
+        val pokemon : List<PokemonFavorito> = db.PokemonFavsDAO().findAllFavs()
+        callbackOK(pokemon)
+    }
 
     private fun saveIntoRoom(pokemon: Pokemon) {
         //el it representa un item videogame que recorre

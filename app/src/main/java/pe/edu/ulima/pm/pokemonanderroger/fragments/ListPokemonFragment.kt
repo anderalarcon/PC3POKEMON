@@ -54,49 +54,30 @@ class ListPokemonFragment : Fragment() {
 
 
 
-        PokemonManager(requireActivity().applicationContext).observe({
-            obs:Int->
-            if(obs==0){
-                PokemonManager(requireActivity().applicationContext).getPokemonsPrimerNivel({response:PokeApiResponse ->
-                    rvi.adapter=ListPokemonAdapter(response.results ,this){
-                            pokemon: Pokemon ->
+
+        PokemonManager(requireActivity().applicationContext).observe({ obs: Int ->
+            if (obs == 0) {
+                PokemonManager(requireActivity().applicationContext).getPokemonsPrimerNivel({ response: PokeApiResponse ->
+                    rvi.adapter = ListPokemonAdapter(response.results, this) { pokemon: Pokemon ->
                         listener?.onSelectCardPokemon(pokemon)
                         println("no hay nada")
                     }
-                },{ error ->
-                    Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
+                }, { error ->
+                    Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
                 })
-            }else{
-                PokemonManager(requireActivity().applicationContext).getProductsByRoom({response: List<Pokemon> ->
-                    rvi.adapter=ListPokemonAdapter(response ,this){
-                            pokemon: Pokemon ->
+            } else {
+                PokemonManager(requireActivity().applicationContext).getProductsByRoom({ response: List<Pokemon> ->
+                    rvi.adapter = ListPokemonAdapter(response, this) { pokemon: Pokemon ->
                         listener?.onSelectCardPokemon(pokemon)
                         println("hay algo")
                     }
-                },{ error ->
-                    Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
+                }, { error ->
+                    Toast.makeText(activity, "Error" + error, Toast.LENGTH_SHORT).show()
                 })
             }
-        },{
+        }, {
 
         })
 
- /*    PokemonManager(requireActivity().applicationContext).getPokemonsPrimerNivel({response:PokeApiResponse ->
-            rvi.adapter=ListPokemonAdapter(response.results ,this){
-                    pokemon: Pokemon ->
-                listener?.onSelectCardPokemon(pokemon)
-            }
-        },{ error ->
-            Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
-        })
-*/
-/* PokemonManager(requireActivity().applicationContext).getProductsByRoom({response: List<Pokemon> ->
-            rvi.adapter=ListPokemonAdapter(response ,this){
-                    pokemon: Pokemon ->
-                listener?.onSelectCardPokemon(pokemon)
-            }
-        },{ error ->
-            Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
-        })*/
     }
 }

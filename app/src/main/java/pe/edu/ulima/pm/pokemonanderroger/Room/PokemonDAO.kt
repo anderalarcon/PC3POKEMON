@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 
 
 
+
 @Dao
 interface PokemonDAO {
 
@@ -19,9 +20,12 @@ interface PokemonDAO {
     @Query("SELECT * FROM Pokemon WHERE id=:id")
     fun findById( id: String): Pokemon
 
+
+
     @Insert
     fun insert(pokemon: Pokemon)
 
     @Query("SELECT count(*) from Pokemon")
     fun selectAllUsers(): Int
+
 }
