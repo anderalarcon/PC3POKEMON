@@ -85,11 +85,11 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
 
     override fun onSelectCardPokemon(CardPokemon: Pokemon) {
         changeDetallePokemonFragment(CardPokemon)
-        Toast.makeText(this, "tocaste", Toast.LENGTH_SHORT).show()
+
     }
 
     override fun onTouch(CardPokemon: PokemonFavorito) {
-        Toast.makeText(this, "tocaste en fav", Toast.LENGTH_SHORT).show()
+
 
     }
 

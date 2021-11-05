@@ -43,7 +43,7 @@
             android:fontFamily="@font/pokemonsolid"
             android:text="Ander:20172991"
             android:shadowColor="@color/black"
-            android:textColor="#FF6600"
+            android:textColor="@color/white"
             android:textSize="40dp">
 
         </TextView>
@@ -53,8 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/pokemonsolid"
-            android:text="Roger:20172991"
-            android:textColor="#FF6600"
+            android:text="Roger:20174012"
+            android:textColor="@color/white"
             android:textSize="40dp">
 
         </TextView>

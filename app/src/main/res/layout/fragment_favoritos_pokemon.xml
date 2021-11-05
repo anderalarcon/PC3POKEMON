@@ -20,7 +20,7 @@
         android:fontFamily="@font/pokemonsolid"
         android:text="Favoritos"
         android:textColor="#FF6600"
-        android:textSize="30dp">
+        android:textSize="40dp">
     </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
