@@ -22,11 +22,6 @@ class ListPokemonFragment : Fragment() {
         //al hacer touch en el activity main
         fun onSelectCardPokemon(CardPokemon: Pokemon)
     }
-   /* private val db = Room.databaseBuilder(requireActivity().applicationContext, PkmnAppDatabase::class.java,
-        "db_pokemon").allowMainThreadQueries()
-        .fallbackToDestructiveMigration()
-        .build()*/
-
     private var listener: interfaceListPokemon? = null
 
     override fun onAttach(context: Context) {

@@ -73,11 +73,26 @@ class DetallesPokemonFragment(
             listener?.OnClickRegresarButton()
         }
 
+
+
+
+
+
+        if(PokemonManager(requireActivity().applicationContext).getFav(pokemon)==0){
+
+            butFavoritos.visibility=View.VISIBLE
+
+        }else{
+
+            butFavoritos.visibility=View.INVISIBLE
+        }
+
         butFavoritos.setOnClickListener { _: View ->
 
             var pokemonfav = PokemonFavorito(pokemon.id, pokemon.name)
             PokemonManager(requireActivity().applicationContext).saveIntoRoomFavs(pokemonfav)
             listener?.OnClickFavoritosButton()
+
         }
 
     }

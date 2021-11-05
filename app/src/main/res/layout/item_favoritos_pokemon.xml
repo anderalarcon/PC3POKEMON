@@ -21,6 +21,7 @@
         </TextView>
 
         <Button
+            android:id="@+id/btn_eliminar_fav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="0dp"

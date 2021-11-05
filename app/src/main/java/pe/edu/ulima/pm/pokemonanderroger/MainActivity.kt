@@ -14,7 +14,7 @@ import pe.edu.ulima.pm.pokemonanderroger.model.*
 import java.sql.Savepoint
 
 class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokemon,
-    DetallesPokemonFragment.interfaceDetallePokemon {
+    DetallesPokemonFragment.interfaceDetallePokemon,FavoritosPokemonFragment.interfaceFav {
 
     val fragments = mutableListOf<Fragment>()
     var pokemonManager: PokemonManager? = null
@@ -46,23 +46,6 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
             changeFavoritosPokemonFragment()
         }
 
-/*
-
-        var pokemon1: Pokemon = Pokemon(
-            "1",
-            "Ditto",
-            "qwe"
-        )
-
-        var pokemon2: Pokemon = Pokemon(
-            "2",
-            "torchic",
-            "qwe"
-        )
-        pokemonManager?.addPokemon(pokemon1)
-        pokemonManager?.addPokemon(pokemon2)
-*/
-
 
     }
 
@@ -86,12 +69,6 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
         changeListPokemonFragment()
     }
 
-
-
-
-
-
-
     override fun OnClickFavoritosButton() {
         //hacer la actualización a favoritos
         changeListPokemonFragment()
@@ -109,14 +86,10 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
     override fun onSelectCardPokemon(CardPokemon: Pokemon) {
         changeDetallePokemonFragment(CardPokemon)
         Toast.makeText(this, "tocaste", Toast.LENGTH_SHORT).show()
-        println("qwe")
+    }
 
-        /*      println(CardPokemon.nombre)
-              println(CardPokemon.attack)
-              println(CardPokemon.defense)
-              println(CardPokemon.specialAttack)
-              println(CardPokemon.specialDefense)
-      */
+    override fun onTouch(CardPokemon: PokemonFavorito) {
+        Toast.makeText(this, "tocaste en fav", Toast.LENGTH_SHORT).show()
 
     }
 

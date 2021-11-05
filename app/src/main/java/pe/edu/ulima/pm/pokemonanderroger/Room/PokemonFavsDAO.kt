@@ -17,4 +17,9 @@ interface PokemonFavsDAO {
 
     @Delete
     fun DeleteFav(PokemonFav: PokemonFavorito)
+
+    @Query("SELECT count(*) FROM PokemonFavorito where id=:idd")
+    fun findPok(idd:Int): Int
+
+
 }

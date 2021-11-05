@@ -9,7 +9,7 @@ import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
 
 
-@Database(entities = [Pokemon::class, PokemonFavorito::class], version = 12)
+@Database(entities = [Pokemon::class, PokemonFavorito::class], version = 19)
 //@TypeConverters( Converters::class)
 abstract class PkmnAppDatabase: RoomDatabase() {
 

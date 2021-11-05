@@ -3,12 +3,14 @@ package pe.edu.ulima.pm.pokemonanderroger.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
 class ListFavoritosPokemonAdapter(
     private val ListPokemonesFavs: List<PokemonFavorito>,
@@ -18,17 +20,30 @@ class ListFavoritosPokemonAdapter(
 ): RecyclerView.Adapter<ListFavoritosPokemonAdapter.ViewHolder>() {
     class ViewHolder(view: View, val listener: (PokemonFavorito) -> Unit, val ListPokemonesFavs: List<PokemonFavorito>) :
         RecyclerView.ViewHolder(view), View.OnClickListener {
+
         val tviPokemonNameFavs: TextView
 
+
         init {
-            /*   iviPokemonImage = view.findViewById(R.id.imgPokemon)*/
+
             tviPokemonNameFavs = view.findViewById(R.id.pokemonName_favoritos)
             view.setOnClickListener(this)
+
+            view.findViewById<Button>(R.id.btn_eliminar_fav).setOnClickListener({
+               PokemonManager(it.context).deleteFav(ListPokemonesFavs[position])
+                view.visibility=View.INVISIBLE
+
+
+            })
+
         }
 
         override fun onClick(v: View?) {
             listener(ListPokemonesFavs[adapterPosition])//En que posicion se ha registrado el view holder
+
         }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,6 +56,8 @@ class ListFavoritosPokemonAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
      holder.tviPokemonNameFavs.text = ListPokemonesFavs[position].name
+
+
     }
 
     override fun getItemCount(): Int {

@@ -41,112 +41,12 @@ class PokemonManager(context: Context) {
     }
 
 
-    fun getPokemonsRetrofit(
-        callbackOK: (PokeApiResponse) -> Unit,
-        callbackerror: (String) -> Unit
-    ) {
-        val retrofit = Retrofit.Builder().baseUrl(API_URL)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-
-        val service = retrofit.create(pokeAPI::class.java)
-
-        service.getALLPokemons().enqueue(object : Callback<PokeApiResponse> {
-            override fun onResponse(
-                call: Call<PokeApiResponse>,
-                response: Response<PokeApiResponse>
-            ) {
-                if (response.isSuccessful()) {
-                    println("primero: " + response.body())
-                    callbackOK(response.body()!!)
-                    /*        println(response.body()!!.results[0])
-                            for ((index,pokemon) in response.body()!!.results.withIndex())
-                            {
-
-                                val service2 = retrofit.create(pokeAPI::class.java)
-
-                                service2.getPokemonInfo(pokemon.url.split("/")[6].toInt())
-                                    .enqueue(object : Callback<Pokemon> {
-                                        override fun onResponse(
-                                            call: Call<Pokemon>,
-                                            response2: Response<Pokemon>
-                                        ) {
-
-
-                                            response.body()!!.results[index]=response2.body()!!
-                                            println("SETEADO: "+response.body())
-
-                                        }
-
-                                        override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                                            TODO("Not yet implemented")
-                                        }
-
-                                    })
-                            }*/
-                }
-
-            }
-
-            override fun onFailure(call: Call<PokeApiResponse>, t: Throwable) {
-                println("error")
-            }
-
-        })
-
-    }
-
-/*
-    fun busqueda(res: PokeApiResponse): PokeApiResponse {
-        var res2:PokeApiResponse=res
-        val retrofit = Retrofit.Builder().baseUrl(API_URL)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-
-        val service = retrofit.create(pokeAPI::class.java)
-        var handler=HandlerCompat.createAsync(Looper.myLooper()!!)
-        Thread(){
-            for ((i, pok) in res.results.withIndex()) {
-                var list = service.getPokemonInfo2(pok.url.split("/")[6].toInt()).execute()
-                res.results[i].hp=list.body()!!.hp
-            }
-            handler.post{res}
-        }.start()
-
-        for ((i, pok) in res.results.withIndex()) {
-            service.getPokemonInfo2(pok.url.split("/")[6].toInt())
-                .enqueue(object : Callback<Pokemon> {
-                    override fun onResponse(
-                        call: Call<Pokemon>,
-                        response: Response<Pokemon>
-                    ) {
-
-                        if (response.isSuccessful) {
-
-                             res2.results[i].hp=response.body()!!.stats[0].base_stat
-                            res2.results[i].attack=response.body()!!.stats[1].base_stat
-                            res2.results[i].defense=response.body()!!.stats[2].base_stat
-                            res2.results[i].special_attack=response.body()!!.stats[3].base_stat
-                            res2.results[i].special_defense=response.body()!!.stats[4].base_stat
-                            println("PASANDO PERO NO GUARDA :S"+res2)
-
-                        }
-                    }
-
-                    override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-                        TODO("Not yet implemented")
-                    }
-
-
-                })
-        }
-        println("saliewndo"+res2)
-        return res2
-
-    }*/
-
      val db = Room.databaseBuilder(context, PkmnAppDatabase::class.java,
         "db_pokemon").allowMainThreadQueries()
         .fallbackToDestructiveMigration()
         .build()
+
+
 
      fun saveIntoRoomFavs(pokemonFavs: PokemonFavorito) {
         //el it representa un item videogame que recorre
@@ -214,7 +114,7 @@ class PokemonManager(context: Context) {
                                         response.body()!!.results[i].sprites = response2.body()!!.sprites
                                         response.body()!!.results[i].id = response2.body()!!.id
                                         db.PokemonDAO().insert(response.body()!!.results[i])
-                                        if(i==19){
+                                        if(i==response.body()!!.results.size-1){
                                             println(response.body())
                                             callbackOK(response.body()!!)
 
@@ -253,6 +153,17 @@ class PokemonManager(context: Context) {
         val pokemon : Int= db.PokemonDAO().selectAllUsers()
         callbackOK(pokemon)
     }
+
+    fun deleteFav(pok:PokemonFavorito){
+     db.PokemonFavsDAO().DeleteFav(pok)
+
+    }
+
+
+    fun getFav(pok:Pokemon):Int{
+    return db.PokemonFavsDAO().findPok(pok.id!!.toInt())
+    }
+
 
 
 }
