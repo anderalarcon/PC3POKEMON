@@ -202,5 +202,24 @@ class PokemonManager(context: Context) {
         }
     }
 
+    fun getPokemonsFavsFirebase(callbackOK: (List<PokemonFavFirebase>) -> Unit, callbackError: (String) -> Unit) {
+        dbFirebase.collection("pokemons_favoritos").get().addOnSuccessListener { res ->
+            val pokemons = arrayListOf<PokemonFavFirebase>()
+            for (document in res) {
+                val pokemon = PokemonFavFirebase(
+                    document.id.toLong(),
+                    document.data["nombre"] as String?,
+                )
+                pokemons.add(pokemon)
+
+            }
+            callbackOK(pokemons)
+        }.addOnFailureListener {
+            callbackError(it.message!!)
+        }
+    }
+
+
+
 }
 

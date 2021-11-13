@@ -12,6 +12,7 @@ import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListFavoritosPokemonAdapter
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListPokemonAdapter
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavFirebase
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
@@ -19,7 +20,7 @@ class FavoritosPokemonFragment : Fragment() {
 
     interface interfaceFav {
         //al hacer touch en el activity main
-        fun onTouch(CardPokemon: PokemonFavorito)
+        fun onTouch(CardPokemon: PokemonFavFirebase)
     }
 
     private var listener: interfaceFav? = null
@@ -46,10 +47,10 @@ class FavoritosPokemonFragment : Fragment() {
 
         val rvi = view.findViewById<RecyclerView>(R.id.ReciclerFavsPokemon)
 
-        PokemonManager(requireActivity().applicationContext).getPokemonFavsByRoom({ response: List<PokemonFavorito> ->
+        PokemonManager(requireActivity().applicationContext).getPokemonsFavsFirebase/*.getPokemonFavsByRoom*/({ response: List<PokemonFavFirebase> ->
             rvi.adapter = ListFavoritosPokemonAdapter(response, this) {
 
-                    pokemon: PokemonFavorito ->
+                    pokemon: PokemonFavFirebase ->
                 rvi.adapter!!.notifyItemRemoved(pokemon.id!!.toInt())
                 listener?.onTouch(pokemon)
 

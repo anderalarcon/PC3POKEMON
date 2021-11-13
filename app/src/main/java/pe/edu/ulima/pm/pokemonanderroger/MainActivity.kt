@@ -14,7 +14,7 @@ import pe.edu.ulima.pm.pokemonanderroger.model.*
 import java.sql.Savepoint
 
 class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokemon,
-    DetallesPokemonFragment.interfaceDetallePokemon,FavoritosPokemonFragment.interfaceFav {
+    DetallesPokemonFragment.interfaceDetallePokemon/*,FavoritosPokemonFragment.interfaceFav*/ {
 
     val fragments = mutableListOf<Fragment>()
     var pokemonManager: PokemonManager? = null
@@ -85,10 +85,10 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
 
 
 
-    override fun onTouch(CardPokemon: PokemonFavorito) {
+   /* override fun onTouch(CardPokemon: PokemonFavorito) {
 
 
-    }
+    }*/
 
     override fun onSelectCardPokemon(CardPokemon: PokemonFirebase) {
         changeDetallePokemonFragment(CardPokemon)
