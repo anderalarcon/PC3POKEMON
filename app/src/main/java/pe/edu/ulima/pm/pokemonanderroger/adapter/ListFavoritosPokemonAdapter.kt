@@ -8,17 +8,15 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import pe.edu.ulima.pm.pokemonanderroger.R
-import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
-import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
-import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
+import pe.edu.ulima.pm.pokemonanderroger.model.*
 
 class ListFavoritosPokemonAdapter(
-    private val ListPokemonesFavs: List<PokemonFavorito>,
+    private val ListPokemonesFavs: List<PokemonFavFirebase>,
     private val fragment: Fragment,
-    private val listener: (PokemonFavorito) -> Unit
+    private val listener: (PokemonFavFirebase) -> Unit
 
 ): RecyclerView.Adapter<ListFavoritosPokemonAdapter.ViewHolder>() {
-    class ViewHolder(view: View, val listener: (PokemonFavorito) -> Unit, val ListPokemonesFavs: List<PokemonFavorito>) :
+    class ViewHolder(view: View, val listener: (PokemonFavFirebase) -> Unit, val ListPokemonesFavs: List<PokemonFavFirebase>) :
         RecyclerView.ViewHolder(view), View.OnClickListener {
 
         val tviPokemonNameFavs: TextView
@@ -30,7 +28,8 @@ class ListFavoritosPokemonAdapter(
             view.setOnClickListener(this)
 
             view.findViewById<Button>(R.id.btn_eliminar_fav).setOnClickListener({
-               PokemonManager(it.context).deleteFav(ListPokemonesFavs[position])
+            FavoritosManager.instance.deleteFavPokemonFirebase(ListPokemonesFavs[position].id!!)
+            //PokemonManager(it.context).deleteFav(ListPokemonesFavs[position])
                 view.visibility=View.INVISIBLE
 
 
