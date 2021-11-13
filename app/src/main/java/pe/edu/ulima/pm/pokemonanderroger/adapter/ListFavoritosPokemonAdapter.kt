@@ -27,13 +27,14 @@ class ListFavoritosPokemonAdapter(
             tviPokemonNameFavs = view.findViewById(R.id.pokemonName_favoritos)
             view.setOnClickListener(this)
 
-            view.findViewById<Button>(R.id.btn_eliminar_fav).setOnClickListener({
-            FavoritosManager.instance.deleteFavPokemonFirebase(ListPokemonesFavs[position].id!!)
-            //PokemonManager(it.context).deleteFav(ListPokemonesFavs[position])
-                view.visibility=View.INVISIBLE
+            view.findViewById<Button>(R.id.btn_eliminar_fav).setOnClickListener {
+                view.visibility = View.INVISIBLE
+                FavoritosManager.instance.deleteFavPokemonFirebase(ListPokemonesFavs[position].id!!)
+
+                //PokemonManager(it.context).deleteFav(ListPokemonesFavs[position])
 
 
-            })
+            }
 
         }
 
