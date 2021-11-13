@@ -5,6 +5,8 @@ import android.os.Looper
 import android.util.Log
 import androidx.core.os.HandlerCompat
 import androidx.room.Room
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
 import pe.edu.ulima.pm.pokemonanderroger.network.pokeAPI
 import retrofit2.Call
@@ -14,6 +16,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class PokemonManager(context: Context) {
+
+    //firebase
+
+    val dbFirebase = Firebase.firestore
+
+
     private val mPokemones = arrayListOf<Pokemon>()
     private val imagenes = arrayListOf<String>()
 
@@ -41,20 +49,25 @@ class PokemonManager(context: Context) {
     }
 
 
-     val db = Room.databaseBuilder(context, PkmnAppDatabase::class.java,
-        "db_pokemon").allowMainThreadQueries()
+    val db = Room.databaseBuilder(
+        context, PkmnAppDatabase::class.java,
+        "db_pokemon"
+    ).allowMainThreadQueries()
         .fallbackToDestructiveMigration()
         .build()
 
 
-
-     fun saveIntoRoomFavs(pokemonFavs: PokemonFavorito) {
+    fun saveIntoRoomFavs(pokemonFavs: PokemonFavorito) {
         //el it representa un item videogame que recorre
 
         db.PokemonFavsDAO().insertFavs(pokemonFavs)
     }
-    fun getPokemonFavsByRoom(callbackOK : (List<PokemonFavorito>) -> Unit, callbackError : (String) -> Unit){
-        val pokemon : List<PokemonFavorito> = db.PokemonFavsDAO().findAllFavs()
+
+    fun getPokemonFavsByRoom(
+        callbackOK: (List<PokemonFavorito>) -> Unit,
+        callbackError: (String) -> Unit
+    ) {
+        val pokemon: List<PokemonFavorito> = db.PokemonFavsDAO().findAllFavs()
         callbackOK(pokemon)
     }
 
@@ -66,8 +79,8 @@ class PokemonManager(context: Context) {
 
     }
 
-    fun getProductsByRoom(callbackOK : (List<Pokemon>) -> Unit, callbackError : (String) -> Unit){
-        val pokemon : List<Pokemon> = db.PokemonDAO().findAll()
+    fun getProductsByRoom(callbackOK: (List<Pokemon>) -> Unit, callbackError: (String) -> Unit) {
+        val pokemon: List<Pokemon> = db.PokemonDAO().findAll()
         callbackOK(pokemon)
     }
 
@@ -111,10 +124,11 @@ class PokemonManager(context: Context) {
                                         response.body()!!.results[i].url =
                                             response2.body()!!.sprites?.other?.officialartwork?.front_default
                                         //*   response.body()!!.results[i].stats=response2.body()!!.stats
-                                        response.body()!!.results[i].sprites = response2.body()!!.sprites
+                                        response.body()!!.results[i].sprites =
+                                            response2.body()!!.sprites
                                         response.body()!!.results[i].id = response2.body()!!.id
                                         db.PokemonDAO().insert(response.body()!!.results[i])
-                                        if(i==response.body()!!.results.size-1){
+                                        if (i == response.body()!!.results.size - 1) {
                                             println(response.body())
                                             callbackOK(response.body()!!)
 
@@ -149,22 +163,44 @@ class PokemonManager(context: Context) {
 
     }
 
-    fun observe(callbackOK : (Int) -> Unit, callbackError : (String) -> Unit){
-        val pokemon : Int= db.PokemonDAO().selectAllUsers()
+    fun observe(callbackOK: (Int) -> Unit, callbackError: (String) -> Unit) {
+        val pokemon: Int = db.PokemonDAO().selectAllUsers()
         callbackOK(pokemon)
     }
 
-    fun deleteFav(pok:PokemonFavorito){
-     db.PokemonFavsDAO().DeleteFav(pok)
+    fun deleteFav(pok: PokemonFavorito) {
+        db.PokemonFavsDAO().DeleteFav(pok)
 
     }
 
 
-    fun getFav(pok:Pokemon):Int{
-    return db.PokemonFavsDAO().findPok(pok.id!!.toInt())
+    fun getFav(pok: PokemonFirebase): Int {
+        return db.PokemonFavsDAO().findPok(pok.id!!.toInt())
     }
 
 
+    fun getPokemonsFirebase(callbackOK: (List<PokemonFirebase>) -> Unit, callbackError: (String) -> Unit) {
+        dbFirebase.collection("pokemons").get().addOnSuccessListener { res ->
+            val pokemons = arrayListOf<PokemonFirebase>()
+            for (document in res) {
+                val pokemon = PokemonFirebase(
+                    document.id.toInt(),
+                    document.data["name"] as String?,
+                    document.data["url"] as String?,
+                    document.data["hp"] as String?,
+                    document.data["attack"] as String?,
+                    document.data["defense"] as String?,
+                    document.data["special_attack"] as String?,
+                    document.data["special_defense"] as String?
+                )
+                pokemons.add(pokemon)
+
+            }
+            callbackOK(pokemons)
+        }.addOnFailureListener {
+        callbackError(it.message!!)
+        }
+    }
 
 }
 

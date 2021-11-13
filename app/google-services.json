@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "208362549696",
+    "project_id": "pokemon-87421",
+    "storage_bucket": "pokemon-87421.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208362549696:android:d92b8bba25e19ee43cd825",
+        "android_client_info": {
+          "package_name": "pe.edu.ulima.pm.pokemonanderroger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208362549696-sqa6nba4s6uobnag46of92on9nqf3eem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8STsLj-wJbD7EVplJd3avUryxkKbtbuo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208362549696-sqa6nba4s6uobnag46of92on9nqf3eem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

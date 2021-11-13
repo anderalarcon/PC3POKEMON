@@ -15,11 +15,12 @@ import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFirebase
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
 
 
 class DetallesPokemonFragment(
-    val pokemon: Pokemon
+    val pokemon: PokemonFirebase
     /*val nombre:String,
     var HP:String,
     var attack:String,

@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
         ft.commit()
     }
 
-    private fun changeDetallePokemonFragment(pokemon: Pokemon) {
+    private fun changeDetallePokemonFragment(pokemon: PokemonFirebase) {
         val fragment = DetallesPokemonFragment(pokemon)
         val ft = supportFragmentManager.beginTransaction()
         //remplazar un nuevo fragment
@@ -83,14 +83,15 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
         ft.commit()
     }
 
-    override fun onSelectCardPokemon(CardPokemon: Pokemon) {
-        changeDetallePokemonFragment(CardPokemon)
 
-    }
 
     override fun onTouch(CardPokemon: PokemonFavorito) {
 
 
+    }
+
+    override fun onSelectCardPokemon(CardPokemon: PokemonFirebase) {
+        changeDetallePokemonFragment(CardPokemon)
     }
 
 

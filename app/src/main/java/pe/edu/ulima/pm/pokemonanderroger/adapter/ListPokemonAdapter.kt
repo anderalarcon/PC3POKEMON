@@ -12,15 +12,16 @@ import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.model.Habilidades
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
+import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFirebase
 
 class ListPokemonAdapter(
-    private val ListPokemones: List<Pokemon>,
+    private val ListPokemones: List<PokemonFirebase>,
     private val fragment: Fragment,
-    private val listener: (Pokemon) -> Unit
+    private val listener: (PokemonFirebase) -> Unit
 
 ) : RecyclerView.Adapter<ListPokemonAdapter.ViewHolder>() {
     // clase que va representar 1 item visual , este necesita los elementos del item , implementamos los metodos que solicita
-    class ViewHolder(view: View, val listener: (Pokemon) -> Unit, val PokemonList: List<Pokemon>) :
+    class ViewHolder(view: View, val listener: (PokemonFirebase) -> Unit, val PokemonList: List<PokemonFirebase>) :
         RecyclerView.ViewHolder(view), View.OnClickListener {
         val iviPokemonImage: ImageView
         val tviPokemonName: TextView
