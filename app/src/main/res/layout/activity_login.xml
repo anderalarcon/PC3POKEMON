@@ -69,6 +69,20 @@
         android:orientation="vertical"
 
         >
+        <EditText
+            android:id="@+id/etUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pokemonsolid"
+            android:hint="Ingresa tu nombre"
+            android:textColorHint="#00FBFC"
+            android:textSize="25dp"
+            android:textColor="#00FBFC"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/white"
+
+            ></EditText>
 
         <Button
             android:id="@+id/btnContinuar"
