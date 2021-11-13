@@ -2,10 +2,12 @@ package pe.edu.ulima.pm.pokemonanderroger.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,10 +15,7 @@ import androidx.room.Room
 import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
-import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
-import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFavorito
-import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFirebase
-import pe.edu.ulima.pm.pokemonanderroger.model.PokemonManager
+import pe.edu.ulima.pm.pokemonanderroger.model.*
 
 
 class DetallesPokemonFragment(
@@ -74,11 +73,6 @@ class DetallesPokemonFragment(
             listener?.OnClickRegresarButton()
         }
 
-
-
-
-
-
         if(PokemonManager(requireActivity().applicationContext).getFav(pokemon)==0){
 
             butFavoritos.visibility=View.VISIBLE
@@ -90,8 +84,22 @@ class DetallesPokemonFragment(
 
         butFavoritos.setOnClickListener { _: View ->
 
-            var pokemonfav = PokemonFavorito(pokemon.id, pokemon.name)
-            PokemonManager(requireActivity().applicationContext).saveIntoRoomFavs(pokemonfav)
+            FavoritosManager.instance.saveFavorito(
+                pokemon.name.toString(),
+                {
+
+                    println(it)
+                    //sendNotification(createNotification("1"))
+
+                },
+                {
+                    Log.e("AgregarFavoritosPokemon", it)
+                    //Toast.makeText(this, "Error guardando usuario", Toast.LENGTH_SHORT).show()
+                }
+            )
+
+            /*var pokemonfav = PokemonFavorito(pokemon.id, pokemon.name)
+            PokemonManager(requireActivity().applicationContext).saveIntoRoomFavs(pokemonfav)*/
             listener?.OnClickFavoritosButton()
 
         }
