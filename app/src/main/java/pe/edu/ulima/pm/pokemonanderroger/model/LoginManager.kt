@@ -27,4 +27,20 @@ class LoginManager {
                 callbackError(it.message!!)
             }
     }
+
+    fun findUser(callbackOk: (List<Useer>) -> Unit, callbackError: (String) -> Unit){
+        dbFirebase.collection("users").get().addOnSuccessListener { res ->
+            val users = arrayListOf<Useer>()
+            for (document in res) {
+                val pokemon = Useer(
+                    document.data["nombre"] as String
+                )
+                users.add(pokemon)
+
+            }
+            callbackOk(users)
+        }.addOnFailureListener {
+            callbackError(it.message!!)
+        }
+    }
 }

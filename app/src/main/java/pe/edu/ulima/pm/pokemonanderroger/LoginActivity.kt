@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import pe.edu.ulima.pm.pokemonanderroger.model.LoginManager
 
-class LoginActivity:AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     var pantallaFragment = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,40 +18,100 @@ class LoginActivity:AppCompatActivity() {
         getSupportActionBar()?.hide()
         setContentView(R.layout.activity_login)
 
-        val btnContinuar=findViewById<Button>(R.id.btnContinuar)
-        val btnFavoritos=findViewById<Button>(R.id.btnFavoritos)
+        val btnContinuar = findViewById<Button>(R.id.btnContinuar)
+        val btnFavoritos = findViewById<Button>(R.id.btnFavoritos)
 
+        var cheq = false
 
+        btnContinuar.setOnClickListener {
+            if(findViewById<EditText>(R.id.etUser).text.toString()!=""){
+                LoginManager.instance.findUser({ res ->
+                    for (i in res) {
+                        println(i.name)
+                        if (i.name == findViewById<EditText>(R.id.etUser).text.toString()) {
+                            cheq = true
+                        }
+                    }
+                    if (cheq) {
+                        Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        Toast.makeText(this, "No existe agregamos chill", Toast.LENGTH_SHORT).show()
+                        LoginManager.instance.saveUser(
+                            findViewById<EditText>(R.id.etUser).text.toString(), {
+                                val intent: Intent = Intent()
+                                pantallaFragment = 1
+                                val bundle: Bundle = Bundle()//Almacenamos data
+                                bundle.putInt("pantallaFragment", pantallaFragment)
+                                intent.setClass(this, MainActivity::class.java) //pasamos next activity
+                                intent.putExtra("data", bundle)
+                                startActivity(intent)
+                            }, {
+                                Toast.makeText(this, "Error guardado", Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                    }
 
-        btnContinuar.setOnClickListener{
+                }, { error ->
+                    Toast.makeText(this, "Error:" + error, Toast.LENGTH_SHORT).show()
+                })
 
-
-            LoginManager.instance.saveUser(
-                findViewById<EditText>(R.id.etUser).text.toString(),{
-                    val intent: Intent = Intent()
-                    pantallaFragment = 1
-                    val bundle:Bundle= Bundle()//Almacenamos data
-                    bundle.putInt("pantallaFragment",pantallaFragment)
-                    intent.setClass(this, MainActivity::class.java) //pasamos next activity
-                    intent.putExtra("data",bundle)
-                    startActivity(intent)
-                },{
-                    Toast.makeText(this,"Error guardado",Toast.LENGTH_SHORT).show()
-                }
-            )
+                cheq = false
+            }else{
+                Toast.makeText(this,"Llena serrano de mierda",Toast.LENGTH_SHORT).show()
+            }
 
 
 
         }
-        btnFavoritos.setOnClickListener{
-            pantallaFragment = 2
-            val intent: Intent = Intent()
-            val bundle:Bundle= Bundle()//Almacenamos data
-            bundle.putInt("pantallaFragment",pantallaFragment)
-            intent.setClass(this, MainActivity::class.java) //pasamos next activity
-            intent.putExtra("data",bundle)
-            startActivity(intent)
+
+
+        btnFavoritos.setOnClickListener {
+
+            if(findViewById<EditText>(R.id.etUser).text.toString()!=""){
+                LoginManager.instance.findUser({ res ->
+                    for (i in res) {
+                        println(i.name)
+                        if (i.name == findViewById<EditText>(R.id.etUser).text.toString()) {
+                            cheq = true
+                        }
+                    }
+                    if (cheq) {
+                        Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        Toast.makeText(this, "No existe agregamos chill", Toast.LENGTH_SHORT).show()
+                        LoginManager.instance.saveUser(
+                            findViewById<EditText>(R.id.etUser).text.toString(), {
+                                val intent: Intent = Intent()
+                                pantallaFragment = 2
+
+                                val bundle: Bundle = Bundle()//Almacenamos data
+                                bundle.putInt("pantallaFragment", pantallaFragment)
+                                intent.setClass(this, MainActivity::class.java) //pasamos next activity
+                                intent.putExtra("data", bundle)
+                                startActivity(intent)
+                            }, {
+                                Toast.makeText(this, "Error guardado", Toast.LENGTH_SHORT).show()
+                            }
+                        )
+                    }
+
+                }, { error ->
+                    Toast.makeText(this, "Error:" + error, Toast.LENGTH_SHORT).show()
+                })
+
+                cheq = false
+            }else{
+                Toast.makeText(this,"Llena serrano de mierda",Toast.LENGTH_SHORT).show()
+
+            }
+
 
         }
+
+
+
     }
+
 }
