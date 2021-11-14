@@ -47,4 +47,22 @@ class FavoritosManager {
 
     }
 
+    fun checkFavsPokemon(callbackOk: (List<PokemonFavFirebase>) -> Unit, callbackError: (String) -> Unit){
+        dbFirebase.collection("pokemons_favoritos").get().addOnSuccessListener { res ->
+            val pokemons = arrayListOf<PokemonFavFirebase>()
+            for (document in res) {
+                val pokemon = PokemonFavFirebase(
+                    document.id.toLong(),
+                    document.data["nombre"] as String
+                )
+                pokemons.add(pokemon)
+                println("LISTA: " + pokemons)
+
+            }
+            callbackOk(pokemons)
+        }.addOnFailureListener {
+            callbackError(it.message!!)
+        }
+    }
+
 }

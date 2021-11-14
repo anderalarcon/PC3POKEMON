@@ -33,8 +33,14 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     if (cheq) {
-                        Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
-                            .show()
+                        pantallaFragment = 1
+                        val bundle: Bundle = Bundle()//Almacenamos data
+                        bundle.putInt("pantallaFragment", pantallaFragment)
+                        intent.setClass(this, MainActivity::class.java) //pasamos next activity
+                        intent.putExtra("data", bundle)
+                        startActivity(intent)
+                       /* Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
+                            .show()*/
                     } else {
                         Toast.makeText(this, "No existe agregamos chill", Toast.LENGTH_SHORT).show()
                         LoginManager.instance.saveUser(
@@ -77,8 +83,14 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     if (cheq) {
-                        Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
-                            .show()
+                        pantallaFragment = 2
+                        val bundle: Bundle = Bundle()//Almacenamos data
+                        bundle.putInt("pantallaFragment", pantallaFragment)
+                        intent.setClass(this, MainActivity::class.java) //pasamos next activity
+                        intent.putExtra("data", bundle)
+                        startActivity(intent)
+                        /*Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
+                            .show()*/
                     } else {
                         Toast.makeText(this, "No existe agregamos chill", Toast.LENGTH_SHORT).show()
                         LoginManager.instance.saveUser(

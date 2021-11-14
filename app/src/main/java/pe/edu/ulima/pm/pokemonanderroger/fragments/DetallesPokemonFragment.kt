@@ -53,6 +53,8 @@ class DetallesPokemonFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         view.findViewById<TextView>(R.id.NombrePokemon_Detalle).setText(pokemon.name)
         view.findViewById<TextView>(R.id.PokemonHp_Detalle).setText(pokemon.hp)
         view.findViewById<TextView>(R.id.PokemonAttack_Detalle).setText(pokemon.attack)
@@ -65,22 +67,44 @@ class DetallesPokemonFragment(
             .fitCenter()
             .into(view.findViewById(R.id.imageView_Detalle))
 
-
+        var cheq = false
         val butRegresar = view.findViewById<Button>(R.id.btnRegresarListaPokemon)
         val butFavoritos = view.findViewById<Button>(R.id.btnFavoritosListaPokemon)
+
+        FavoritosManager.instance.checkFavsPokemon({res ->
+            for (i in res) {
+
+                if (i.name.toString() == pokemon.name.toString()) {
+                    println("NOMBRE POKEMON: " + pokemon.name)
+                    println("nombre lista: " + i.name)
+
+                    cheq = true
+                    println("CHEEECCK: " + cheq)
+                }
+
+                if(cheq/*PokemonManager(requireActivity().applicationContext).getFav(pokemon)==0*/){
+                    println("ENTRO INVISBLE")
+                    butFavoritos.visibility=View.INVISIBLE
+
+                }else{
+                    println("ENTRO VISIBLE")
+                    butFavoritos.visibility=View.VISIBLE
+                }
+            }
+        }, {
+            error -> print(error)
+        }
+
+
+        )
+
+
 
         butRegresar.setOnClickListener { _: View ->
             listener?.OnClickRegresarButton()
         }
+        println("CHEQQQQQQ: " + cheq)
 
-        if(PokemonManager(requireActivity().applicationContext).getFav(pokemon)==0){
-
-            butFavoritos.visibility=View.VISIBLE
-
-        }else{
-
-            butFavoritos.visibility=View.INVISIBLE
-        }
 
         butFavoritos.setOnClickListener { _: View ->
 
