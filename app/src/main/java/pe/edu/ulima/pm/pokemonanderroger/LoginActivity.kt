@@ -24,8 +24,10 @@ class LoginActivity : AppCompatActivity() {
         var cheq = false
 
         btnContinuar.setOnClickListener {
+
             if(findViewById<EditText>(R.id.etUser).text.toString()!=""){
                 LoginManager.instance.findUser({ res ->
+                    val intent: Intent = Intent()
                     for (i in res) {
                         println(i.name)
                         if (i.name == findViewById<EditText>(R.id.etUser).text.toString()) {
@@ -39,13 +41,13 @@ class LoginActivity : AppCompatActivity() {
                         intent.setClass(this, MainActivity::class.java) //pasamos next activity
                         intent.putExtra("data", bundle)
                         startActivity(intent)
-                       /* Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
-                            .show()*/
+                       Toast.makeText(this, "Bienvenido nuevamente rey", Toast.LENGTH_SHORT)
+                            .show()
                     } else {
-                        Toast.makeText(this, "No existe agregamos chill", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Nuevo usuario creado", Toast.LENGTH_SHORT).show()
                         LoginManager.instance.saveUser(
                             findViewById<EditText>(R.id.etUser).text.toString(), {
-                                val intent: Intent = Intent()
+
                                 pantallaFragment = 1
                                 val bundle: Bundle = Bundle()//Almacenamos data
                                 bundle.putInt("pantallaFragment", pantallaFragment)
@@ -64,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
 
                 cheq = false
             }else{
-                Toast.makeText(this,"Llena serrano de mierda",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Ingresa un username",Toast.LENGTH_SHORT).show()
             }
 
 
@@ -76,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
 
             if(findViewById<EditText>(R.id.etUser).text.toString()!=""){
                 LoginManager.instance.findUser({ res ->
+                    val intent: Intent = Intent()
                     for (i in res) {
                         println(i.name)
                         if (i.name == findViewById<EditText>(R.id.etUser).text.toString()) {
@@ -89,13 +92,13 @@ class LoginActivity : AppCompatActivity() {
                         intent.setClass(this, MainActivity::class.java) //pasamos next activity
                         intent.putExtra("data", bundle)
                         startActivity(intent)
-                        /*Toast.makeText(this, "Ya existe un usuario con ese nombre", Toast.LENGTH_SHORT)
-                            .show()*/
+                        Toast.makeText(this, "Bienvenido nuevamente rey", Toast.LENGTH_SHORT)
+                            .show()
                     } else {
-                        Toast.makeText(this, "No existe agregamos chill", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Nuevo usuario creado", Toast.LENGTH_SHORT).show()
                         LoginManager.instance.saveUser(
                             findViewById<EditText>(R.id.etUser).text.toString(), {
-                                val intent: Intent = Intent()
+
                                 pantallaFragment = 2
 
                                 val bundle: Bundle = Bundle()//Almacenamos data
@@ -115,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
 
                 cheq = false
             }else{
-                Toast.makeText(this,"Llena serrano de mierda",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,"Ingresar un username",Toast.LENGTH_SHORT).show()
 
             }
 

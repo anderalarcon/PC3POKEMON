@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.room.Room
 import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
 import pe.edu.ulima.pm.pokemonanderroger.fragments.DetallesPokemonFragment
+import pe.edu.ulima.pm.pokemonanderroger.fragments.DetallesPokemonFragment2
 import pe.edu.ulima.pm.pokemonanderroger.fragments.FavoritosPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.fragments.ListPokemonFragment
 import pe.edu.ulima.pm.pokemonanderroger.model.*
 import java.sql.Savepoint
 
 class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokemon,
-    DetallesPokemonFragment.interfaceDetallePokemon/*,FavoritosPokemonFragment.interfaceFav*/ {
+    DetallesPokemonFragment.interfaceDetallePokemon,DetallesPokemonFragment2.interfaceDetallePokemon {
 
     val fragments = mutableListOf<Fragment>()
     var pokemonManager: PokemonManager? = null
@@ -64,6 +65,13 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
         ft.replace(R.id.main_layout, fragment)
         ft.commit()
     }
+    private fun changeDetallePokemonFragment2(pokemon: Pokemon) {
+        val fragment = DetallesPokemonFragment2(pokemon)
+        val ft = supportFragmentManager.beginTransaction()
+        //remplazar un nuevo fragment
+        ft.replace(R.id.main_layout, fragment)
+        ft.commit()
+    }
 
     override fun OnClickRegresarButton() {
         changeListPokemonFragment()
@@ -92,6 +100,20 @@ class MainActivity : AppCompatActivity(), ListPokemonFragment.interfaceListPokem
 
     override fun onSelectCardPokemon(CardPokemon: PokemonFirebase) {
         changeDetallePokemonFragment(CardPokemon)
+    }
+
+    override fun onSelectCardPokemon2(CardPokemon: Pokemon) {
+        changeDetallePokemonFragment2(CardPokemon)
+    }
+
+    override fun OnClickRegresarButton2() {
+        changeListPokemonFragment()
+    }
+
+    override fun OnClickFavoritosButton2() {
+        //hacer la actualización a favoritos
+        changeListPokemonFragment()
+        Toast.makeText(this, "Se ha agregado a favoritos", Toast.LENGTH_SHORT).show()
     }
 
 

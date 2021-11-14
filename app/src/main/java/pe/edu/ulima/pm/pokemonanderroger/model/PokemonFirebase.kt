@@ -3,7 +3,7 @@ package pe.edu.ulima.pm.pokemonanderroger.model
 
 data class PokemonFirebase (
 
-    var id:Int?,
+    var id:Long?,
 
     var name :String?,
 

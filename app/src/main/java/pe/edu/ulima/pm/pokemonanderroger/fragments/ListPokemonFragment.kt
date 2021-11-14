@@ -13,6 +13,7 @@ import androidx.room.Room
 import pe.edu.ulima.pm.pokemonanderroger.R
 import pe.edu.ulima.pm.pokemonanderroger.Room.PkmnAppDatabase
 import pe.edu.ulima.pm.pokemonanderroger.adapter.ListPokemonAdapter
+import pe.edu.ulima.pm.pokemonanderroger.adapter.ListPokemonAdapterV2
 import pe.edu.ulima.pm.pokemonanderroger.model.PokeApiResponse
 import pe.edu.ulima.pm.pokemonanderroger.model.Pokemon
 import pe.edu.ulima.pm.pokemonanderroger.model.PokemonFirebase
@@ -23,7 +24,9 @@ class ListPokemonFragment : Fragment() {
     interface interfaceListPokemon {
         //al hacer touch en el activity main
         fun onSelectCardPokemon(CardPokemon: PokemonFirebase)
+        fun onSelectCardPokemon2(CardPokemon: Pokemon)
     }
+
     private var listener: interfaceListPokemon? = null
 
     override fun onAttach(context: Context) {
@@ -49,7 +52,7 @@ class ListPokemonFragment : Fragment() {
         val rvi = view.findViewById<RecyclerView>(R.id.ReciclerCardPokemon)
 
 
-        PokemonManager(requireActivity().applicationContext).getPokemonsFirebase({res:List<PokemonFirebase>->
+/*        PokemonManager(requireActivity().applicationContext).getPokemonsFirebase({res:List<PokemonFirebase>->
             rvi.adapter=ListPokemonAdapter(res,this){ pokemon: PokemonFirebase->
                 listener?.onSelectCardPokemon(pokemon)
                 println("no hay nada")
@@ -58,7 +61,32 @@ class ListPokemonFragment : Fragment() {
             error->
             Log.e("ListFragment",error)
             Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
-        })
+        })*/
+
+
+        PokemonManager(requireActivity().applicationContext).observev2({size:Int ->
+            if(size==0){
+                PokemonManager(requireActivity().applicationContext).getPokemonsPrimerNivel({ res: PokeApiResponse ->
+                    rvi.adapter = ListPokemonAdapterV2(res.results, this) { pokemon: Pokemon ->
+                          listener?.onSelectCardPokemon2(pokemon)
+                        println("no hay nada")
+                    }
+                },{})
+            }else{
+                PokemonManager(requireActivity().applicationContext).getPokemonsFirebase({res:List<PokemonFirebase>->
+                    rvi.adapter=ListPokemonAdapter(res,this){ pokemon: PokemonFirebase->
+                        listener?.onSelectCardPokemon(pokemon)
+                        println("no hay nada")
+                    }
+                },{
+                        error->
+                    Log.e("ListFragment",error)
+                    Toast.makeText(activity,"Error"+error,Toast.LENGTH_SHORT).show()
+                })
+            }
+        },{})
+
+
 
 
 /*
